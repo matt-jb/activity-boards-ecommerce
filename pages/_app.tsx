@@ -1,5 +1,6 @@
-import { AppProps } from 'next/app'
-import { createGlobalStyle } from 'styled-components'
+import { AppProps } from 'next/app';
+import { createGlobalStyle } from 'styled-components';
+import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -21,9 +22,6 @@ html {
 body {
   font-weight: 400;
   line-height: 1.6;
-  max-width: 120rem;
-  margin: 2rem auto 2rem;
-  padding: 0 2rem;
 }
 
 input, button, textarea, select {

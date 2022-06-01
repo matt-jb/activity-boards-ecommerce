@@ -1,16 +1,11 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Layout from '../components/organisms/Layout';
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Head>
-        <title>Zakątek aktywności</title>
-        <meta name="description" content="Zakątek aktywności | Sklep z ręcznie wykonanymi tablicami manipulacyjnymi" />
-      </Head>
-
+    <Layout title="Strona główna">
       <p>Hello world!</p>
-    </div>
+    </Layout>
   )
 }
 
