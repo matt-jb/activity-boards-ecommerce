@@ -3,6 +3,16 @@ import { createGlobalStyle } from 'styled-components';
 import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  --maxWidth: 120rem;
+  --white: #fff;
+  --black: #111;
+  --pink: ff708a;
+  --lightGrey: #ddd;
+  --lightBlue: #608ac8cc;
+  --pink: #ff708a;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +37,7 @@ body {
 input, button, textarea, select {
   font: inherit;
 }`
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
