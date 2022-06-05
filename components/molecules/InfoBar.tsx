@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
@@ -35,10 +36,12 @@ const StyledBar = styled.div`
   }
 `
 
-export default function InfoBar({ children }: { children: ReactNode }) {
+export default function InfoBar() {
   return <StyledWrapper>
     <StyledBar>
-      {children}
+      <Link href="/how-to-buy" className="infoText">Wysyłka i zwrot</Link>
+      <div>Ręcznie wykonane tablice manipulacyjne</div>
+      <Link href="/personalisation" className="infoText">Personalizacja</Link>
     </StyledBar>
   </StyledWrapper>
 }

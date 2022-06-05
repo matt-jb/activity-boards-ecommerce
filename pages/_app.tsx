@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   --pink: ff708a;
   --lightGrey: #ddd;
   --lightBlue: #608ac8cc;
+  --darkBlue: #213a5f;
   --pink: #ff708a;
 }
 

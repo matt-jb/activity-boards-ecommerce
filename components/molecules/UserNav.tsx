@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 import IconAccount from '../atoms/IconAccount';
 import IconCart from '../atoms/IconCart';
@@ -31,9 +32,9 @@ const StyledUserSection = styled.div`
   }
 
   & .icon {
-    fill: var(--black);
     width: 4rem;
     height: 3.5rem;
+    fill: var(--black);
     transition: all .15s;
   }
 
@@ -47,22 +48,30 @@ export default function UserNav() {
   return (
     <>
       <StyledUserSection>
-        <div className="icon-container">
-          <IconSearch className="icon"/>
-          <div className="icon-name">Szukaj</div>
-        </div>
-        <div className="icon-container">
-          <IconHeart className="icon"/>
-          <div className="icon-name">Ulubione</div>
-        </div>
-        <div className="icon-container">
-          <IconAccount className="icon"/>
-          <div className="icon-name">Konto</div>
-        </div>
-        <div className="icon-container">
-          <IconCart className="icon"/>
-          <div className="icon-name">Koszyk</div>
-        </div>
+        <Link href="/search" passHref>
+          <div className="icon-container">
+            <IconSearch className="icon"/>
+            <div className="icon-name">Szukaj</div>
+          </div>
+        </Link>
+        <Link href="/favorite" passHref>
+          <div className="icon-container">
+            <IconHeart className="icon"/>
+            <div className="icon-name">Ulubione</div>
+          </div>
+        </Link>
+        <Link href="/account" passHref>
+          <div className="icon-container">
+            <IconAccount className="icon"/>
+            <div className="icon-name">Konto</div>
+          </div>
+        </Link>
+        <Link href="/cart" passHref>
+          <div className="icon-container">
+            <IconCart className="icon"/>
+            <div className="icon-name">Koszyk</div>
+          </div>
+        </Link>
       </StyledUserSection>
     </>
   )
