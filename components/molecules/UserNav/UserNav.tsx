@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import IconAccount from '../../atoms/IconAccount';
-import IconCart from '../../atoms/IconCart';
-import IconHeart from '../../atoms/IconHeart';
-import IconSearch from '../../atoms/IconSearch';
+import IconAccount from '../../assets/IconAccount';
+import IconCart from '../../assets/IconCart';
+import IconHeart from '../../assets/IconHeart';
+import IconSearch from '../../assets/IconSearch';
 import { StyledUserSection } from './UserNav.styles';
 
 export default function UserNav() {
