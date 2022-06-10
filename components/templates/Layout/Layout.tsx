@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 import "../../../styles/Layout.module.css";
+import PageTitle from "../../atoms/PageTitle";
 import { InfoBar } from "../../molecules/index";
 import { Footer } from "../../organisms/index";
 import { HeaderMenu } from "../../organisms/index";
@@ -19,7 +20,8 @@ export default function Layout({ title, children }: Props) {
       </Head>
       <StyledWrapper>
         <InfoBar />
-        <HeaderMenu/>
+        <HeaderMenu />
+        <PageTitle title={title} />
         {children}
         <Footer/>
       </StyledWrapper>

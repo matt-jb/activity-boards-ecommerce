@@ -3,23 +3,13 @@ import styled from 'styled-components';
 export const StyledUl = styled.ul`
   display: flex;
 
-  & li {
-    text-transform: uppercase;
-    font-family: 'Poppins', serif;
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--black);
-    list-style: none;
-    transition: all .15s;
+  @media only screen and (max-width: 900px) {
+    margin-bottom: 1rem;
+  }
 
-    &:not(:last-child) {
-      margin-right: 1.5rem;
-    }
-
-    &:hover {
-      color: var(--pink);
-      cursor: pointer;
-    }
+  @media only screen and (max-width: 450px) {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 `;

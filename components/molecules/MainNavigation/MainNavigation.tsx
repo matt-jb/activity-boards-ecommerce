@@ -1,15 +1,16 @@
-import Link from 'next/link';
+import NavLink from '../../atoms/NavLink';
 import { StyledUl } from './MainNavigation.styles';
+import { links } from './navLinks';
 
 export default function MainNavigation() {
   return (
     <nav>
       <StyledUl>
-        <Link href="/shop" passHref><li>Sklep</li></Link>
-        <Link href="/categories" passHref><li>Kategorie</li></Link>
-        <Link href="/blog" passHref><li>Blog</li></Link>
-        <Link href="/about" passHref><li>O nas</li></Link>
-        <Link href="/contact" passHref><li>Kontakt</li></Link>
+        {links.map(link => (<NavLink
+          key={link.text}
+          text={link.text}
+          url={link.url}
+        />))}
       </StyledUl>
     </nav>
   )

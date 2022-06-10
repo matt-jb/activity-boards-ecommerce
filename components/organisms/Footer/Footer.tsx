@@ -1,4 +1,4 @@
-import { StyledWrapper, StyledFooter, StyledColumn } from './Footer.styles';
+import { StyledWrapper, StyledFooter, StyledColumn, FooterColumnTitle, StyledDescription } from './Footer.styles';
 import { middleColumn, rightColumn } from './Links';
 import FooterLink from '../../atoms/FooterLink';
 
@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <StyledWrapper>
       <StyledFooter>
-        <StyledColumn>
-          <div className="footerColumnTitle">Kącik aktywności</div>
+        <StyledDescription>
+          <FooterColumnTitle className="footerColumnTitle">Kącik aktywności</FooterColumnTitle>
           <div className="footerLeftColumn">
             Kącik aktywności jest miejscem,
             w którym możesz kupić ręcznie wykonane
@@ -15,10 +15,9 @@ export default function Footer() {
             Są to małe, lecz niezwykle trwałe
             arcydzieła.
           </div>
-        </StyledColumn>
-        <StyledColumn />
+        </StyledDescription>
         <StyledColumn>
-          <div className="footerColumnTitle">Zakupy</div>
+          <FooterColumnTitle className="footerColumnTitle">Zakupy</FooterColumnTitle>
           <ul>
             {middleColumn.map(link => (<FooterLink
               key={link.text}
@@ -28,7 +27,7 @@ export default function Footer() {
           </ul>
         </StyledColumn>
         <StyledColumn>
-          <div className="footerColumnTitle">Sklep</div>
+          <FooterColumnTitle className="footerColumnTitle">Sklep</FooterColumnTitle>
           <ul>
             {rightColumn.map(link => (<FooterLink
               key={link.text}

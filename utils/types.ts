@@ -13,7 +13,7 @@ export interface IProduct {
   }
 }
 
-export interface IFooterLink {
+export interface INavLink {
   text: string
   url: string
 }

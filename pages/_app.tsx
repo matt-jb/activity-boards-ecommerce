@@ -3,6 +3,18 @@ import { createGlobalStyle } from 'styled-components';
 import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`
+  $bp-largest: 75em;      // 1200 px
+  $bp-large: 68.75em;     // 1100 px
+  $bp-medium: 56.25em;    // 900 px
+  $bp-small: 43.75em;     // 700 px
+  $bp-xsmall: 37.5em;     // 600 px
+  $bp-smallest: 25em;     // 400 px
+
+  html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1rem = 10px
+  }
+
   :root {
     --maxWidth: 120rem;
     --white: #fff;
@@ -26,11 +38,6 @@ const GlobalStyle = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: inherit;
-  }
-
-  html {
-    box-sizing: border-box;
-    font-size: 62.5%; // 1rem = 10px
   }
 
   body {

@@ -1,8 +1,22 @@
 import Link from 'next/link';
-import { IFooterLink } from '../../utils/types';
+import styled from 'styled-components';
+import { INavLink } from '../../utils/types';
 
-export default function FooterLink({ text, url }: IFooterLink) {
+const StyledLi = styled.li`
+  width: fit-content;
+  list-style: none;
+  border-bottom: 1px solid transparent;
+  transition: all ease-in-out .1s;
+  cursor: pointer;
+  
+  &:hover {
+    color: var(--lightGrey);
+    border-bottom: 1px solid var(--lightGrey);
+  }
+`
+
+export default function FooterLink({ text, url }: INavLink) {
   return (
-    <Link href={url} passHref><li>{text}</li></Link>
+    <Link href={url} passHref><StyledLi>{text}</StyledLi></Link>
   )
 }

@@ -1,6 +1,6 @@
-import { IFooterLink } from "../../../utils/types";
+import { INavLink } from "../../../utils/types";
 
-export const middleColumn: Array<IFooterLink> = [
+export const middleColumn: Array<INavLink> = [
   {
     text: 'Tablice spersonalizowane',
     url: '/personalization'
@@ -19,7 +19,7 @@ export const middleColumn: Array<IFooterLink> = [
   }
 ]
 
-export const rightColumn: Array<IFooterLink> = [
+export const rightColumn: Array<INavLink> = [
   {
     text: 'Jak kupować?',
     url: '/how-to-buy'
