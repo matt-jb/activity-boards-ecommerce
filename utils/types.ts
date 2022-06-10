@@ -12,3 +12,8 @@ export interface IProduct {
     height: number
   }
 }
+
+export interface IFooterLink {
+  text: string
+  url: string
+}

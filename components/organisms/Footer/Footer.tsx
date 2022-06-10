@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import { StyledWrapper, StyledFooter, StyledColumn } from './Footer.styles';
+import { middleColumn, rightColumn } from './Links';
+import FooterLink from '../../atoms/FooterLink';
 
 export default function Footer() {
   return (
@@ -19,19 +20,21 @@ export default function Footer() {
         <StyledColumn>
           <div className="footerColumnTitle">Zakupy</div>
           <ul>
-            <Link href="/personalization" passHref><li>Tablice spersonalizowane</li></Link>
-            <Link href="/about" passHref><li>O nas</li></Link>
-            <Link href="/faq" passHref><li>FAQ</li></Link>
-            <Link href="/blog" passHref><li>Blog</li></Link>
+            {middleColumn.map(link => (<FooterLink
+              key={link.text}
+              text={link.text}
+              url={link.url}
+            />))}
           </ul>
         </StyledColumn>
         <StyledColumn>
           <div className="footerColumnTitle">Sklep</div>
           <ul>
-            <Link href="/how-to-buy" passHref><li>Jak kupować</li></Link>
-            <Link href="/terms-and-conditions" passHref><li>Regulaminy</li></Link>
-            <Link href="/account" passHref><li>Twoje konto</li></Link>
-            <Link href="/contact" passHref><li>Kontakt</li></Link>
+            {rightColumn.map(link => (<FooterLink
+              key={link.text}
+              text={link.text}
+              url={link.url}
+            />))}
           </ul>
         </StyledColumn>
       </StyledFooter>
