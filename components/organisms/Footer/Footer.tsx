@@ -1,5 +1,5 @@
 import { StyledWrapper, StyledFooter, StyledColumn, FooterColumnTitle, StyledDescription } from './Footer.styles';
-import { middleColumn, rightColumn } from './Links';
+import { middleColumn, rightColumn } from './links';
 import FooterLink from '../../atoms/FooterLink';
 
 export default function Footer() {
