@@ -17,3 +17,12 @@ export interface INavLink {
   text: string
   url: string
 }
+
+interface IUser {
+  uid: string
+  email: string | null
+}
+
+export type UserType = IUser | null
+
+export type loginType = 'google' | 'github'

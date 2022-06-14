@@ -5,7 +5,7 @@ import PageTitle from "../../atoms/PageTitle";
 import { InfoBar } from "../../molecules/index";
 import { Footer } from "../../organisms/index";
 import { HeaderMenu } from "../../organisms/index";
-import { StyledWrapper } from "./Layout.styles";
+import { StyledWrapper, WidthContainer } from "./Layout.styles";
 
 interface Props {
   title: string
@@ -22,7 +22,9 @@ export default function Layout({ title, children }: Props) {
         <InfoBar />
         <HeaderMenu />
         <PageTitle title={title} />
-        {children}
+        <WidthContainer>
+          {children}
+        </WidthContainer>
         <Footer/>
       </StyledWrapper>
     </>

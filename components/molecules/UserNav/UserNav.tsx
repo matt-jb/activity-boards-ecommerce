@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useAuth } from '../../../context/AuthContext';
 import IconAccount from '../../assets/IconAccount';
 import IconCart from '../../assets/IconCart';
 import IconHeart from '../../assets/IconHeart';
@@ -6,6 +7,8 @@ import IconSearch from '../../assets/IconSearch';
 import { StyledUserSection } from './UserNav.styles';
 
 export default function UserNav() {
+  const { user } = useAuth();
+
   return (
     <>
       <StyledUserSection>
@@ -21,10 +24,10 @@ export default function UserNav() {
             <div className="icon-name">Ulubione</div>
           </div>
         </Link>
-        <Link href="/account" passHref>
+        <Link href={user ? `/account` : `/login`} passHref>
           <div className="icon-container">
             <IconAccount className="icon"/>
-            <div className="icon-name">Konto</div>
+            <div className="icon-name">{user ? `Konto` : `Zaloguj`}</div>
           </div>
         </Link>
         <Link href="/cart" passHref>
