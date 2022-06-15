@@ -10,5 +10,4 @@ export const WidthContainer = styled.div`
   width: 100%;
   max-width: var(--maxWidth);
   margin: 0 auto;
-  text-align: center;
 `

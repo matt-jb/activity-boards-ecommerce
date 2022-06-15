@@ -6,6 +6,7 @@ const StyledNotFound = styled.p`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.8rem;
 `
 
 const StyledGoBack = styled.button`

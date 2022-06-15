@@ -2,6 +2,7 @@ import { StaticImageData } from "next/image"
 
 export interface IProduct {
   id: string
+  createdBy: string
   name: string
   slug: string
   price: number
