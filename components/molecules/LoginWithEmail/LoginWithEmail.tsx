@@ -3,6 +3,8 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import { useAlert } from '../../../context/AlertContext';
+import { useAuth } from '../../../context/AuthContext';
 import { auth } from '../../../lib/clientAuth';
 import { validate } from '../../../utils/utils';
 import FormInput from '../../atoms/FormInput';
@@ -13,6 +15,8 @@ const { email, password } = validate;
 
 export default function LoginWithEmail() {
   const router = useRouter();
+  const { addAlert } = useAlert();
+  const { loading } = useAuth();
 
   const formik = useFormik({
     initialValues,
@@ -22,11 +26,12 @@ export default function LoginWithEmail() {
     onSubmit: values => {
       const { email, password } = values;
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
+          addAlert('success', 'Jesteś zalogowany.');
           router.push('/');
         })
         .catch((error) => {
-          console.log(error.message);
+          addAlert('warning', error.message);
         });
     }
   });
@@ -46,7 +51,13 @@ export default function LoginWithEmail() {
           label="Hasło"
           formik={formik}
         />
-        <Button type="submit">Zaloguj się</Button>
+        {/* disabled nie działa */}
+        <Button 
+          type="submit"
+          disabled={loading}
+        >
+          Zaloguj się
+        </Button>
       </StyledForm>
       <OtherOptions>Nie masz konta? <Link href="/register">Załóż je</Link>.</OtherOptions>
       <OtherOptions>Nie pamiętasz hasła? <Link href="/reset">Zresetuj je</Link>.</OtherOptions>

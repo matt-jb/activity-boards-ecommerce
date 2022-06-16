@@ -27,3 +27,11 @@ interface IUser {
 export type UserType = IUser | null
 
 export type loginType = 'google' | 'github'
+
+export type AlertTypes = 'warning' | 'success' | 'info'
+
+export interface IAlert {
+  type: AlertTypes
+  message: string
+  id: string
+}

@@ -1,6 +1,9 @@
 import Head from "next/head";
 import { ReactNode } from "react";
+import { useAlert } from "../../../context/AlertContext";
 import "../../../styles/Layout.module.css";
+import { IAlert } from "../../../utils/types";
+import Alert from "../../atoms/Alert";
 import PageTitle from "../../atoms/PageTitle";
 import { InfoBar } from "../../molecules/index";
 import { Footer } from "../../organisms/index";
@@ -13,6 +16,8 @@ interface Props {
 }
 
 export default function Layout({ title, children }: Props) {
+  const { alerts, discardAlert } = useAlert();
+
   return (
     <>
       <Head>
@@ -23,9 +28,10 @@ export default function Layout({ title, children }: Props) {
         <HeaderMenu />
         <PageTitle title={title} />
         <WidthContainer>
+          {alerts.map((alert: IAlert) => (<Alert key={alert.id} alert={alert} discardAlert={discardAlert}/>))}
           {children}
         </WidthContainer>
-        <Footer/>
+        <Footer />
       </StyledWrapper>
     </>
   )

@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { createGlobalStyle } from 'styled-components';
-import { AuthContextProvider } from '../context/AuthContext';
+import AllContextsWrapper from '../context/AllContextsWrapper';
 import ProtectedRoute from '../components/atoms/ProtectedRoute';
 import "../styles/_app.css";
 
@@ -53,14 +53,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <AuthContextProvider>
+    <AllContextsWrapper>
       <GlobalStyle />
       {authRequired.includes(router.pathname)
         ? (<ProtectedRoute>
             <Component {...pageProps} />
           </ProtectedRoute>)
-        : (<Component {...pageProps} />)
-      }
-    </AuthContextProvider>
+        : (<Component {...pageProps} />)}
+    </AllContextsWrapper>
   )
 }
