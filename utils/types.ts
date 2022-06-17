@@ -1,7 +1,8 @@
-import { StaticImageData } from "next/image"
+import { StaticImageData } from "next/image";
 
 export interface IProduct {
   id: string
+  createdBy: string
   name: string
   slug: string
   price: number
@@ -16,4 +17,21 @@ export interface IProduct {
 export interface INavLink {
   text: string
   url: string
+}
+
+interface IUser {
+  uid: string
+  email: string | null
+}
+
+export type UserType = IUser | null
+
+export type loginType = 'google' | 'github'
+
+export type AlertTypes = 'warning' | 'success' | 'info'
+
+export interface IAlert {
+  type: AlertTypes
+  message: string
+  id: string
 }

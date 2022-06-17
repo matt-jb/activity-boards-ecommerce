@@ -1,15 +1,11 @@
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { createGlobalStyle } from 'styled-components';
+import AllContextsWrapper from '../context/AllContextsWrapper';
+import ProtectedRoute from '../components/atoms/ProtectedRoute';
 import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`
-  $bp-largest: 75em;      // 1200 px
-  $bp-large: 68.75em;     // 1100 px
-  $bp-medium: 56.25em;    // 900 px
-  $bp-small: 43.75em;     // 700 px
-  $bp-xsmall: 37.5em;     // 600 px
-  $bp-smallest: 25em;     // 400 px
-
   html {
     box-sizing: border-box;
     font-size: 62.5%; // 1rem = 10px
@@ -19,8 +15,8 @@ const GlobalStyle = createGlobalStyle`
     --maxWidth: 120rem;
     --white: #fff;
     --black: #111;
-    --pink: ff708a;
     --lightGrey: #ddd;
+    --lightGrey2: #eee;
     --darkGrey: #444;
     --lightBlue: #608ac8cc;
     --lightBlue2: #83aae4cc;
@@ -43,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-weight: 400;
     line-height: 1.6;
+    font-family: 'Poppins', serif;
   }
 
   input, button, textarea, select {
@@ -50,12 +47,19 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const authRequired = ['/account', '/edit'];
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
-    <>
+    <AllContextsWrapper>
       <GlobalStyle />
-      <Component {...pageProps} />
-    </>
+      {authRequired.includes(router.pathname)
+        ? (<ProtectedRoute>
+            <Component {...pageProps} />
+          </ProtectedRoute>)
+        : (<Component {...pageProps} />)}
+    </AllContextsWrapper>
   )
 }

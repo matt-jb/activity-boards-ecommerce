@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "../../../context/AuthContext";
 import { IProduct } from "../../../utils/types";
 import { getShortDescription } from "../../../utils/utils";
 import DeleteButton from "../../atoms/DeleteButton";
@@ -21,15 +22,16 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-  const { id, name, slug, images, description, price } = product;
+  const { id, createdBy, name, slug, images, description, price } = product;
+  const { user } = useAuth();
 
   return (
     <StyledProductCard>
       <ImageContainer>
-        <>
+        {user?.uid === createdBy && <>
           <EditButton />
           <DeleteButton />
-        </>
+        </>}
         <Image
           src={images[0]}
           alt={name}
