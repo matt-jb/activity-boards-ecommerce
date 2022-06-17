@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useAuth } from '../../context/AuthContext';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -41,16 +40,11 @@ interface Props {
 }
 
 export default function LoginButton({ onClick, text }: Props) {
-  const { loading } = useAuth();
-
   return (
-      <StyledContainer>
-        <StyledButton
-          onClick={onClick}
-          disabled={loading}
-        >
-          {text}
-        </StyledButton>
-      </StyledContainer>
+    <StyledContainer>
+      <StyledButton onClick={onClick}>
+        {text}
+      </StyledButton>
+    </StyledContainer>
   )
 }

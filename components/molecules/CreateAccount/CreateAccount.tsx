@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import { useAlert } from '../../../context/AlertContext';
 import { auth } from '../../../lib/clientAuth';
 import { validate } from '../../../utils/utils';
 import FormInput from '../../atoms/FormInput';
@@ -12,6 +13,7 @@ const initialValues = { email: '', password: '', confirmPassword: '' }
 const { email, password, confirmPassword } = validate;
 
 export default function CreateAccount() {
+  const { addAlert } = useAlert();
   const router = useRouter();
 
   const formik = useFormik({
@@ -19,14 +21,16 @@ export default function CreateAccount() {
     validationSchema: Yup.object({
       email, password, confirmPassword
     }),
-    onSubmit: values => {
+    onSubmit: (values, { setSubmitting }) => {
       const { email, password } = values;
       createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        router.push('/')
+      .then(() => {
+        addAlert('success', 'Poprawnie zarejestrowano użytkownika.');
+        router.push('/');
+        setSubmitting(false);
       })
       .catch((error) => {
-        console.log(error.message)
+        addAlert('warning', error.message);
       });
     }
   });
@@ -52,7 +56,7 @@ export default function CreateAccount() {
           label="Potwierdź hasło"
           formik={formik}
         />
-        <Button type="submit">Zrejestruj się</Button>
+        <Button type="submit" disabled={formik.isSubmitting}>Zrejestruj się</Button>
       </StyledForm>
       <OtherOptions>Masz konto, ale nie pamiętasz hasła? <Link href="/reset">Zresetuj je</Link>.</OtherOptions>
     </Wrapper>

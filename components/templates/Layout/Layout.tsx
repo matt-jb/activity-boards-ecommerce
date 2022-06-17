@@ -1,13 +1,10 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import "../../../styles/Layout.module.css";
-import { IAlert } from "../../../utils/types";
 import Alert from "../../atoms/Alert";
 import PageTitle from "../../atoms/PageTitle";
-import { InfoBar } from "../../molecules/index";
-import { Footer } from "../../organisms/index";
-import { HeaderMenu } from "../../organisms/index";
+import { InfoBar } from "../../molecules";
+import { Footer, HeaderMenu } from "../../organisms";
 import { StyledWrapper, WidthContainer } from "./Layout.styles";
 
 interface Props {
@@ -28,7 +25,7 @@ export default function Layout({ title, children }: Props) {
         <HeaderMenu />
         <PageTitle title={title} />
         <WidthContainer>
-          {alerts.map((alert: IAlert) => (<Alert key={alert.id} alert={alert} discardAlert={discardAlert}/>))}
+          {alerts.map((alert) => (<Alert key={alert.id} alert={alert} discardAlert={discardAlert} />))}
           {children}
         </WidthContainer>
         <Footer />

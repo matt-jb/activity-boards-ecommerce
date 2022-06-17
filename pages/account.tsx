@@ -12,14 +12,14 @@ export default function Account() {
   function signOut() {
     logout().then(() => {
       addAlert('success', 'Jesteś wylogowany.');
-      router.push('/')
+      router.push('/');
     });
   }
 
   return (
     <Layout title="Twoje konto">
-      <p>Twoje ID: {user.uid}</p>
-      <p>Twój adres email: {user.email}</p>
+      <p>Twoje ID: {user?.uid}</p>
+      <p>Twój adres email: {user?.email}</p>
       <LoginButton onClick={() => signOut()} text="Wyloguj" />
     </Layout>
   )

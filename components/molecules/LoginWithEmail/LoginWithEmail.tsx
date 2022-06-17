@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useAlert } from '../../../context/AlertContext';
-import { useAuth } from '../../../context/AuthContext';
 import { auth } from '../../../lib/clientAuth';
 import { validate } from '../../../utils/utils';
 import FormInput from '../../atoms/FormInput';
@@ -16,19 +15,19 @@ const { email, password } = validate;
 export default function LoginWithEmail() {
   const router = useRouter();
   const { addAlert } = useAlert();
-  const { loading } = useAuth();
 
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object({
       email, password
     }),
-    onSubmit: values => {
+    onSubmit: (values, { setSubmitting }) => {
       const { email, password } = values;
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           addAlert('success', 'Jesteś zalogowany.');
           router.push('/');
+          setSubmitting(false);
         })
         .catch((error) => {
           addAlert('warning', error.message);
@@ -51,10 +50,9 @@ export default function LoginWithEmail() {
           label="Hasło"
           formik={formik}
         />
-        {/* disabled nie działa */}
         <Button 
           type="submit"
-          disabled={loading}
+          disabled={formik.isSubmitting}
         >
           Zaloguj się
         </Button>

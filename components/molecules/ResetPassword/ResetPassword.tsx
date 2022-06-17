@@ -3,29 +3,33 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import { useAlert } from '../../../context/AlertContext';
 import { auth } from '../../../lib/clientAuth';
 import { validate } from '../../../utils/utils';
 import FormInput from '../../atoms/FormInput';
 import { Button, OtherOptions, StyledForm, Wrapper } from './ResetPassword.styles';
 
-const initialValues = { email: '' }
+const initialValues = { email: '' };
 const { email } = validate;
 
 export default function ResetPassword() {
   const router = useRouter();
+  const { addAlert } = useAlert();
 
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object({ email }),
-    onSubmit: values => {
+    onSubmit: (values, { setSubmitting }) => {
       const { email } = values;
 
       sendPasswordResetEmail(auth, email)
         .then(() => {
+          addAlert('info', 'Link do resetu hasła wysłany.');
           router.push('/');
+          setSubmitting(false);
         })
         .catch((error) => {
-          console.log(error.message);
+          addAlert('warning', error.message);
         });
   }});
 
@@ -38,7 +42,12 @@ export default function ResetPassword() {
           label="Email"
           formik={formik}
         />
-        <Button type="submit">Zresetuj hasło</Button>
+        <Button
+          type="submit"
+          disabled={formik.isSubmitting}
+        >
+          Zresetuj hasło
+        </Button>
       </StyledForm>
       <OtherOptions>Pamiętasz swoje hasło? <Link href="/login">Zaloguj się</Link>.</OtherOptions>
     </Wrapper>

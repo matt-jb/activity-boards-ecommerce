@@ -2,7 +2,13 @@ import { createContext, useContext, useState } from 'react';
 import { AlertTypes, IAlert } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
 
-const AlertContext = createContext<any>({});
+interface IAlertContext {
+  alerts: Array<IAlert>
+  addAlert: (type: AlertTypes, message: string) => void
+  discardAlert: (id: string) => void
+}
+
+const AlertContext = createContext<IAlertContext>({} as IAlertContext);
 
 export const useAlert = () => useContext(AlertContext);
 
@@ -12,6 +18,10 @@ interface Props {
 
 export function AlertContextProvider({ children }: Props) {
   const [alerts, setAlerts] = useState<IAlert[]>([]);
+  // useLocation -> next
+  // "localhost:3000"
+  // "/login"
+  // "/"
   
   function addAlert(type: AlertTypes, message: string) {
     const newAlert = {
@@ -20,13 +30,13 @@ export function AlertContextProvider({ children }: Props) {
       type
     }
     setAlerts(prev => [...prev, newAlert]);
+
+    // 5s
+    // setTimeout -> discardAlert
   }
   
   function discardAlert(id: string) {
-    const newAlerts = alerts;
-    const i = alerts.findIndex(alert => alert.id === id);
-    if (i > -1) newAlerts.splice(i, 1);
-    setAlerts([...newAlerts]);
+    setAlerts((prev) => prev.filter((singleAlert) => singleAlert.id !== id))
   };
 
   return (
