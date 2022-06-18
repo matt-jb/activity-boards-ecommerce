@@ -1,37 +1,34 @@
 import { StaticImageData } from "next/image";
 
 export interface IProduct {
-  id: string
-  createdBy: string
-  name: string
-  slug: string
-  price: number
-  description: string
-  images: Array<string | StaticImageData>
-  dimensions: {
-    width: number
-    height: number
-  }
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  description: string;
+  images: Array<string | StaticImageData>;
+  width: number;
+  height: number;
 }
 
 export interface INavLink {
-  text: string
-  url: string
+  text: string;
+  url: string;
 }
 
 interface IUser {
-  uid: string
-  email: string | null
+  uid: string;
+  email: string | null;
 }
 
-export type UserType = IUser | null
+export type UserType = IUser | null;
 
-export type loginType = 'google' | 'github'
+export type loginType = "google" | "github";
 
-export type AlertTypes = 'warning' | 'success' | 'info'
+export type AlertTypes = "warning" | "success" | "info";
 
 export interface IAlert {
-  type: AlertTypes
-  message: string
-  id: string
+  type: AlertTypes;
+  message: string;
+  id: string;
 }

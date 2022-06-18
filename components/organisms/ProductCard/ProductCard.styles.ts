@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 export const NameTag = styled.div`
   margin: 1.3rem 0;
-`
+`;
 
 export const Name = styled.h2`
   font-size: 1.7rem;
-  font-family: 'Dosis', serif;
+  font-family: "Dosis", serif;
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
-`
+`;
 
 export const Description = styled.p`
   font-size: 1.2rem;
-`
+`;
 
 export const CtaMore = styled.a`
   margin-left: 1rem;
@@ -22,13 +22,13 @@ export const CtaMore = styled.a`
   color: var(--darkGrey);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
     color: var(--black);
     border-bottom: 1px solid var(--black);
   }
-`
+`;
 
 export const Price = styled.div`
   margin: 1.3rem 0;
@@ -37,7 +37,7 @@ export const Price = styled.div`
   & span {
     font-weight: 600;
   }
-`
+`;
 
 export const CtaWrapper = styled.div`
   display: flex;
@@ -59,10 +59,10 @@ export const CtaWrapper = styled.div`
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0,0,0,0.15);
+      box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.15);
     }
   }
-`
+`;
 
 export const MoreButton = styled.button`
   width: 9rem;
@@ -73,7 +73,7 @@ export const MoreButton = styled.button`
   &:hover {
     background-color: var(--pink);
   }
-`
+`;
 
 export const AddToCartButton = styled.button`
   width: 12rem;
@@ -84,7 +84,7 @@ export const AddToCartButton = styled.button`
   &:hover {
     background-color: var(--intensivePink);
   }
-`
+`;
 
 export const ImageContainer = styled.section`
   position: relative;
@@ -93,24 +93,25 @@ export const ImageContainer = styled.section`
   width: 50%;
   margin-right: 1rem;
   overflow: hidden;
-`
+`;
 
 export const StyledProductCard = styled.div`
   width: 100%;
-  height: 25rem;
+  height: 27rem;
+  padding-right: 1rem;
   border: 2px solid #e6e6e6;
   border-radius: 3rem;
   overflow: hidden;
   background-color: var(--white);
-  transition: all .2s;
-  font-family: 'Poppins', serif;
+  transition: all 0.2s;
+  font-family: "Poppins", serif;
 
   &:hover {
-    box-shadow: 0.1rem 1.2rem 1.9rem 0rem rgba(0,0,0,0.17);
+    box-shadow: 0.1rem 1.2rem 1.9rem 0rem rgba(0, 0, 0, 0.17);
     border: 2px solid var(--pink);
   }
 
   @media only screen and (max-width: 450px) {
     height: 30rem;
   }
-`
+`;

@@ -1,14 +1,16 @@
-import Logo from '../../atoms/Logo';
-import { MainNavigation } from '../../molecules';
-import { UserNav } from '../../molecules';
-import { StyledHeader, StyledHeaderWrapper } from './HeaderMenu.styles';
+import Logo from "../../atoms/Logo";
+import { MainNavigation } from "../../molecules";
+import { UserNav } from "../../molecules";
+import { StyledHeader, StyledHeaderWrapper } from "./HeaderMenu.styles";
 
 export default function HeaderMenu() {
-  return <StyledHeader>
-    <StyledHeaderWrapper>
-      <Logo />
-      <MainNavigation />
-      <UserNav />
-    </StyledHeaderWrapper>
-  </StyledHeader>
+  return (
+    <StyledHeader>
+      <StyledHeaderWrapper>
+        <Logo />
+        <MainNavigation />
+        <UserNav />
+      </StyledHeaderWrapper>
+    </StyledHeader>
+  );
 }

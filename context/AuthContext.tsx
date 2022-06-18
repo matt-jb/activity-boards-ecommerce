@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../lib/clientAuth';
-import { UserType } from '../utils/types';
+import { createContext, useContext, useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../lib/clientAuth";
+import { UserType } from "../utils/types";
 
 interface IAuthContext {
-  user: UserType | null
-  logout: () => Promise<void>
+  user: UserType | null;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -13,7 +13,7 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 export const useAuth = () => useContext(AuthContext);
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const AuthContextProvider = ({ children }: Props) => {
@@ -26,26 +26,26 @@ export const AuthContextProvider = ({ children }: Props) => {
       if (user) {
         setUser({
           uid: user.uid,
-          email: user.email
-        })
+          email: user.email,
+        });
       } else {
         setUser(null);
       }
       setLoading(false);
-    })
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   const logout = async () => {
     await signOut(auth);
     setUser(null);
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ user, logout }}>
       {loading ? null : children}
       {/* loader */}
     </AuthContext.Provider>
-  )
-}
+  );
+};
