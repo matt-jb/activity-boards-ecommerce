@@ -8,8 +8,8 @@ import { Footer, HeaderMenu } from "../../organisms";
 import { StyledWrapper, WidthContainer } from "./Layout.styles";
 
 interface Props {
-  title: string
-  children: ReactNode
+  title: string;
+  children: ReactNode;
 }
 
 export default function Layout({ title, children }: Props) {
@@ -18,6 +18,7 @@ export default function Layout({ title, children }: Props) {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title} | Kącik aktywności</title>
       </Head>
       <StyledWrapper>
@@ -25,11 +26,13 @@ export default function Layout({ title, children }: Props) {
         <HeaderMenu />
         <PageTitle title={title} />
         <WidthContainer>
-          {alerts.map((alert) => (<Alert key={alert.id} alert={alert} discardAlert={discardAlert} />))}
+          {alerts.map((alert) => (
+            <Alert key={alert.id} alert={alert} discardAlert={discardAlert} />
+          ))}
           {children}
         </WidthContainer>
         <Footer />
       </StyledWrapper>
     </>
-  )
+  );
 }

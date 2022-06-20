@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
+import { useRouter } from "next/router";
+import styled from "styled-components";
 
 const StyledNotFound = styled.p`
   display: flex;
@@ -7,7 +7,12 @@ const StyledNotFound = styled.p`
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-`
+
+  @media only screen and (max-width: 600px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+`;
 
 const StyledGoBack = styled.button`
   width: 14rem;
@@ -15,7 +20,7 @@ const StyledGoBack = styled.button`
   background-color: var(--pink);
   margin-top: 2rem;
   font-size: 1.6rem;
-  font-family: 'Poppins', serif;
+  font-family: "Poppins", serif;
   font-weight: 600;
   text-transform: uppercase;
   border: none;
@@ -26,13 +31,13 @@ const StyledGoBack = styled.button`
 
   &:hover {
     background-color: var(--intensivePink);
-    box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0,0,0,0.15);
+    box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.15);
   }
 
   &:active {
     background-color: var(--darkBlue);
   }
-`
+`;
 
 export default function NotFound() {
   const router = useRouter();
@@ -44,5 +49,5 @@ export default function NotFound() {
         Go back
       </StyledGoBack>
     </StyledNotFound>
-  )
+  );
 }

@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "../../../context/AuthContext";
 import { IProduct } from "../../../utils/types";
 import { getShortDescription } from "../../../utils/utils";
-import DeleteButton from "../../atoms/DeleteButton";
-import EditButton from "../../atoms/EditButton";
 import {
   AddToCartButton,
   CtaMore,
@@ -15,29 +12,30 @@ import {
   Name,
   NameTag,
   Price,
-  StyledProductCard } from "./ProductCard.styles";
+  StyledProductCard,
+} from "./ProductCard.styles";
+import { useAuth } from "../../../context/AuthContext";
+import DeleteButton from "../../atoms/DeleteButton";
+import EditButton from "../../atoms/EditButton";
 
 interface Props {
-  product: IProduct
+  product: IProduct;
 }
 
 export default function ProductCard({ product }: Props) {
-  const { id, createdBy, name, slug, images, description, price } = product;
-  const { user } = useAuth();
+  const { id, name, slug, images, description, price } = product;
+  // const { user } = useAuth();
 
   return (
     <StyledProductCard>
       <ImageContainer>
-        {user?.uid === createdBy && <>
-          <EditButton />
-          <DeleteButton />
-        </>}
-        <Image
-          src={images[0]}
-          alt={name}
-          layout="fill"
-          objectFit="cover"
-        />
+        {/* {user?.uid === createdBy && (
+          <>
+            <EditButton />
+            <DeleteButton />
+          </>
+        )} */}
+        <Image src={images[0]} alt={name} layout="fill" objectFit="cover" />
       </ImageContainer>
       <NameTag>
         <Name>{name}</Name>
@@ -58,5 +56,5 @@ export default function ProductCard({ product }: Props) {
         <AddToCartButton>Do koszyka</AddToCartButton>
       </CtaWrapper>
     </StyledProductCard>
-  )
+  );
 }

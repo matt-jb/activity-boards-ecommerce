@@ -1,8 +1,8 @@
-import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import { createGlobalStyle } from 'styled-components';
-import AllContextsWrapper from '../context/AllContextsWrapper';
-import ProtectedRoute from '../components/atoms/ProtectedRoute';
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import { createGlobalStyle } from "styled-components";
+import AllContextsWrapper from "../context/AllContextsWrapper";
+import ProtectedRoute from "../components/atoms/ProtectedRoute";
 import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`
@@ -45,9 +45,9 @@ const GlobalStyle = createGlobalStyle`
   input, button, textarea, select {
     font: inherit;
   }
-`
+`;
 
-const authRequired = ['/account', '/edit'];
+const authRequired = ["/account", "/edit"];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -55,11 +55,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AllContextsWrapper>
       <GlobalStyle />
-      {authRequired.includes(router.pathname)
-        ? (<ProtectedRoute>
-            <Component {...pageProps} />
-          </ProtectedRoute>)
-        : (<Component {...pageProps} />)}
+      {authRequired.includes(router.pathname) ? (
+        <ProtectedRoute>
+          <Component {...pageProps} />
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </AllContextsWrapper>
-  )
+  );
 }
