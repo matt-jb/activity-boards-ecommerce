@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 export function getShortDescription(description: string) {
   const words = description.split(` `);
-  if (words.length > 15) return words.slice(0, 15).join(` `).concat(`...`);
+  if (words.length > 12) return words.slice(0, 12).join(` `).concat(`...`);
   return description;
 }
 
