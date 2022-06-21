@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import Alert from "../../atoms/Alert";
-import PageTitle from "../../atoms/PageTitle";
+import { Alert } from "../../atoms";
+import { PageTitle } from "../../atoms";
 import { InfoBar } from "../../molecules";
 import { Footer, HeaderMenu } from "../../organisms";
 import { StyledWrapper, WidthContainer } from "./Layout.styles";

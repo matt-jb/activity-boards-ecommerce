@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-interface Props {
-  id: string;
-  label: string;
-  type: string;
-  formik: any; // To pewnie do zmodyfikowania
-}
-
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   width: 30rem;
   height: 4rem;
   margin-top: 2rem;
@@ -29,24 +22,8 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledError = styled.p`
+export const StyledError = styled.p`
   margin-top: 0.5rem;
   font-size: 1.3rem;
   color: var(--intensivePink);
 `;
-
-export default function FormInput({ id, label, type, formik }: Props) {
-  return (
-    <>
-      <StyledInput
-        id={id}
-        type={type}
-        placeholder={label}
-        {...formik.getFieldProps(`${id}`)}
-      />
-      {formik.touched[id] && formik.errors[id] && (
-        <StyledError>{formik.errors[id]}</StyledError>
-      )}
-    </>
-  );
-}

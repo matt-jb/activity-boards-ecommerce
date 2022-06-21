@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import AllContextsWrapper from "../context/AllContextsWrapper";
-import ProtectedRoute from "../components/atoms/ProtectedRoute";
+import { ProtectedRoute } from "../components/atoms";
 import "../styles/_app.css";
 
 const GlobalStyle = createGlobalStyle`

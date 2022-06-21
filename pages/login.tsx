@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LoginButton from "../components/atoms/LoginButton";
+import { LoginButton } from "../components/atoms";
 import { Layout } from "../components/templates";
 import { LoginWithEmail } from "../components/molecules";
 import { loginType } from "../utils/types";

@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import LoginButton from '../components/atoms/LoginButton';
-import { Layout } from '../components/templates';
-import { useAlert } from '../context/AlertContext';
-import { useAuth } from '../context/AuthContext';
+import { useRouter } from "next/router";
+import { LoginButton } from "../components/atoms";
+import { Layout } from "../components/templates";
+import { useAlert } from "../context/AlertContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Account() {
   const { user, logout } = useAuth();
@@ -11,8 +11,8 @@ export default function Account() {
 
   function signOut() {
     logout().then(() => {
-      addAlert('success', 'Jesteś wylogowany.');
-      router.push('/');
+      addAlert("success", "Jesteś wylogowany.");
+      router.push("/");
     });
   }
 
@@ -22,5 +22,5 @@ export default function Account() {
       <p>Twój adres email: {user?.email}</p>
       <LoginButton onClick={() => signOut()} text="Wyloguj" />
     </Layout>
-  )
+  );
 }

@@ -15,8 +15,8 @@ import {
   StyledProductCard,
 } from "./ProductCard.styles";
 import { useAuth } from "../../../context/AuthContext";
-import DeleteButton from "../../atoms/DeleteButton";
-import EditButton from "../../atoms/EditButton";
+import { DeleteButton } from "../../atoms";
+import { EditButton } from "../../atoms";
 
 interface Props {
   product: IProduct;

@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const StyledNotFound = styled.p`
+export const StyledNotFound = styled.p`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +13,7 @@ const StyledNotFound = styled.p`
   }
 `;
 
-const StyledGoBack = styled.button`
+export const StyledGoBack = styled.button`
   width: 14rem;
   height: 4rem;
   background-color: var(--pink);
@@ -38,16 +37,3 @@ const StyledGoBack = styled.button`
     background-color: var(--darkBlue);
   }
 `;
-
-export default function NotFound() {
-  const router = useRouter();
-
-  return (
-    <StyledNotFound>
-      The page you&apos;re looking for was not found.
-      <StyledGoBack type="button" onClick={() => router.back()}>
-        Go back
-      </StyledGoBack>
-    </StyledNotFound>
-  );
-}

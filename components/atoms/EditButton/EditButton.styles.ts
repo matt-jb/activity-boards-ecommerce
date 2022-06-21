@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import IconGears from '../assets/IconGears';
+import styled from "styled-components";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   display: inline-block;
   position: relative;
   width: 5rem;
@@ -9,7 +8,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 100%;
   z-index: 1;
-  transition: all .1s;
+  transition: all 0.1s;
   cursor: pointer;
   opacity: 0.7;
   left: 1rem;
@@ -28,14 +27,6 @@ const StyledButton = styled.button`
 
   &:hover {
     opacity: 1;
-    box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0,0,0,0.15);
+    box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.15);
   }
-`
-
-export default function EditButton() {
-  return (
-    <StyledButton title="Edytuj produkt">
-      <IconGears className="icon" />
-    </StyledButton>
-  )
-}
+`;

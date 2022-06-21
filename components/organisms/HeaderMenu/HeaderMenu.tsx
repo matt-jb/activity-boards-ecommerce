@@ -1,4 +1,4 @@
-import Logo from "../../atoms/Logo";
+import { Logo } from "../../atoms";
 import { MainNavigation } from "../../molecules";
 import { UserNav } from "../../molecules";
 import { StyledHeader, StyledHeaderWrapper } from "./HeaderMenu.styles";

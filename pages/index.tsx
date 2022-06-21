@@ -1,5 +1,5 @@
 import Layout from "../components/templates/Layout/Layout";
-import ProductsWrapper from "../components/atoms/ProductsWrapper";
+import { ProductsWrapper } from "../components/atoms";
 import { ProductCard } from "../components/organisms";
 import { getAllProductsQuery } from "../lib/queries";
 import { IProduct } from "../utils/types";

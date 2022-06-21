@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   width: 30rem;
   height: 5rem;
   background-color: var(--pink);
@@ -33,16 +33,3 @@ const StyledButton = styled.button`
     color: var(--white);
   }
 `;
-
-interface Props {
-  onClick: () => void;
-  text: string;
-}
-
-export default function LoginButton({ onClick, text }: Props) {
-  return (
-    <StyledContainer>
-      <StyledButton onClick={onClick}>{text}</StyledButton>
-    </StyledContainer>
-  );
-}
