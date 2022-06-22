@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { LoginButton } from "../components/atoms";
 import { Layout } from "../components/templates";
 import { LoginWithEmail } from "../components/molecules";
-import { loginType } from "../utils/types";
+import { LoginType } from "../utils/types";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -27,7 +27,7 @@ export default function Login() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function loginWithPopup(type: loginType) {
+  function loginWithPopup(type: LoginType) {
     const provider = type === "google" ? googleProvider : githubProvider;
 
     signInWithPopup(auth, provider)

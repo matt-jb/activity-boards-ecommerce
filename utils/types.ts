@@ -21,9 +21,14 @@ interface IUser {
   email: string | null;
 }
 
+export interface ICartItem {
+  qty: number;
+  item: IProduct;
+}
+
 export type UserType = IUser | null;
 
-export type loginType = "google" | "github";
+export type LoginType = "google" | "github";
 
 export type AlertTypes = "warning" | "success" | "info";
 
@@ -32,3 +37,12 @@ export interface IAlert {
   message: string;
   id: string;
 }
+
+export type ActionsType =
+  | { type: "add-cart-item"; payload: { product: IProduct } }
+  | {
+      type: "change-qty";
+      payload: { product: IProduct; cartProductIndex: number; newQty: number };
+    }
+  | { type: "remove-cart-item"; payload: { cartProductIndex: number } }
+  | { type: "clear-cart-items"; payload: null };
