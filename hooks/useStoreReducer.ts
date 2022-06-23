@@ -1,10 +1,22 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { storeReducer } from "../utils/storeReducer";
-import { IProduct } from "../utils/types";
+import { ICartItem, IProduct } from "../utils/types";
 import { getProductIndex } from "../utils/utils";
 
+function setInitialState() {
+  if (typeof window !== "undefined") {
+    const data = localStorage.getItem("activity-boards-cart");
+    if (data) return JSON.parse(data) as Array<ICartItem>;
+  }
+  return [];
+}
+
 export function useStoreReducer() {
-  const [state, dispatch] = useReducer(storeReducer, []);
+  const [state, dispatch] = useReducer(storeReducer, setInitialState());
+
+  useEffect(() => {
+    localStorage.setItem("activity-boards-cart", JSON.stringify(state));
+  });
 
   function addProduct(product: IProduct) {
     const cartProductIndex = getProductIndex(product, state);
