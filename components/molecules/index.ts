@@ -7,6 +7,8 @@ import ResetPassword from "./ResetPassword/ResetPassword";
 import GalleryComponent from "./Gallery/Gallery";
 import ImagesSection from "./ImagesSection/ImagesSection";
 import ProductDescription from "./ProductDescription/ProductDescription";
+import GrandTotalSection from "./GrandTotalSection/GrandTotalSection";
+import CartItemControls from "./CartItemControls/CartItemControls";
 
 export {
   InfoBar,
@@ -18,4 +20,6 @@ export {
   GalleryComponent,
   ImagesSection,
   ProductDescription,
+  GrandTotalSection,
+  CartItemControls,
 };

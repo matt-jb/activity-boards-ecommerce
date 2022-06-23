@@ -11,6 +11,7 @@ import PageTitle from "./PageTitle/PageTitle";
 import ProductsWrapper from "./ProductsWrapper/ProductsWrapper";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Spinner from "./Spinner/Spinner";
+import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
 
 export {
   Alert,
@@ -26,4 +27,5 @@ export {
   ProductsWrapper,
   Spinner,
   ProtectedRoute,
+  NoItemsInCart,
 };

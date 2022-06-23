@@ -29,9 +29,9 @@ const loading = keyframes`
 `;
 
 const Spinner = styled.div`
-  animation: ${loading} 0.9s infinite linear;
+  animation: ${loading} 0.7s infinite linear;
   border-radius: 50%;
-  color: var(--intensivePink);
+  color: #ff4b6c;
   font-size: 2rem;
   height: 1em;
   margin: 20rem auto;

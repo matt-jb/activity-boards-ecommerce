@@ -1,42 +1,48 @@
-import Link from 'next/link';
-import { useAuth } from '../../../context/AuthContext';
-import IconAccount from '../../assets/IconAccount';
-import IconCart from '../../assets/IconCart';
-import IconHeart from '../../assets/IconHeart';
-import IconSearch from '../../assets/IconSearch';
-import { StyledUserSection } from './UserNav.styles';
+import Link from "next/link";
+import { useAuth } from "../../../context/AuthContext";
+import { BiSearchAlt2, BiHeart, BiUser, BiCart } from "react-icons/bi";
+import {
+  Counter,
+  IconContainer,
+  IconName,
+  StyledUserSection,
+} from "./UserNav.styles";
+import { useCart } from "../../../context/CartContext";
+import { getItemsNumber } from "../../../utils/utils";
 
 export default function UserNav() {
   const { user } = useAuth();
+  const { state } = useCart();
 
   return (
     <>
       <StyledUserSection>
         <Link href="/search" passHref>
-          <div className="icon-container">
-            <IconSearch className="icon"/>
-            <div className="icon-name">Szukaj</div>
-          </div>
+          <IconContainer>
+            <BiSearchAlt2 className="icon" />
+            <IconName>Szukaj</IconName>
+          </IconContainer>
         </Link>
         <Link href="/favorite" passHref>
-          <div className="icon-container">
-            <IconHeart className="icon"/>
-            <div className="icon-name">Ulubione</div>
-          </div>
+          <IconContainer>
+            <BiHeart className="icon" />
+            <IconName>Ulubione</IconName>
+          </IconContainer>
         </Link>
         <Link href={user ? `/account` : `/login`} passHref>
-          <div className="icon-container">
-            <IconAccount className="icon"/>
-            <div className="icon-name">{user ? `Konto` : `Zaloguj`}</div>
-          </div>
+          <IconContainer>
+            <BiUser className="icon" />
+            <IconName>{user ? `Konto` : `Zaloguj`}</IconName>
+          </IconContainer>
         </Link>
         <Link href="/cart" passHref>
-          <div className="icon-container">
-            <IconCart className="icon"/>
-            <div className="icon-name">Koszyk</div>
-          </div>
+          <IconContainer>
+            {state.length > 0 && <Counter>{getItemsNumber(state)}</Counter>}
+            <BiCart className="icon" />
+            <IconName>Koszyk</IconName>
+          </IconContainer>
         </Link>
       </StyledUserSection>
     </>
-  )
+  );
 }

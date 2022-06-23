@@ -8,9 +8,9 @@ interface Props {
   products: Array<IProduct>;
 }
 
-const Home = ({ products }: Props) => {
+const Shop = ({ products }: Props) => {
   return (
-    <Layout title="Strona główna">
+    <Layout title="Sklep">
       <ProductsWrapper>
         {products.map((el) => (
           <ProductCard key={el.id} product={el} />
@@ -20,7 +20,7 @@ const Home = ({ products }: Props) => {
   );
 };
 
-export default Home;
+export default Shop;
 
 export async function getStaticProps() {
   const products = await getAllProductsQuery();

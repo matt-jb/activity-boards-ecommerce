@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../lib/clientAuth";
 import { UserType } from "../utils/types";
+import { Spinner } from "../components/atoms";
 
 interface IAuthContext {
   user: UserType | null;
@@ -44,8 +45,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   return (
     <AuthContext.Provider value={{ user, logout }}>
-      {loading ? null : children}
-      {/* loader */}
+      {loading ? <Spinner /> : children}
     </AuthContext.Provider>
   );
 };

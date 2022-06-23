@@ -6,9 +6,9 @@ export default function NotFound() {
 
   return (
     <StyledNotFound>
-      The page you&apos;re looking for was not found.
+      Ups! Ta strona nie istnieje.
       <StyledGoBack type="button" onClick={() => router.back()}>
-        Go back
+        Zawróć!
       </StyledGoBack>
     </StyledNotFound>
   );

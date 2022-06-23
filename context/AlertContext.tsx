@@ -18,10 +18,6 @@ interface Props {
 
 export function AlertContextProvider({ children }: Props) {
   const [alerts, setAlerts] = useState<IAlert[]>([]);
-  // useLocation -> next
-  // "localhost:3000"
-  // "/login"
-  // "/"
 
   function addAlert(type: AlertTypes, message: string) {
     const newAlert = {

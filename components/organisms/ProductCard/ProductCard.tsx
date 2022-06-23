@@ -17,6 +17,7 @@ import {
 import { useAuth } from "../../../context/AuthContext";
 import { DeleteButton } from "../../atoms";
 import { EditButton } from "../../atoms";
+import { useCart } from "../../../context/CartContext";
 
 interface Props {
   product: IProduct;
@@ -24,6 +25,7 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const { id, name, slug, images, description, price } = product;
+  const { addProduct } = useCart();
   // const { user } = useAuth();
 
   return (
@@ -53,7 +55,9 @@ export default function ProductCard({ product }: Props) {
         <Link href={`/${id}/${slug}`} passHref>
           <MoreButton>Więcej</MoreButton>
         </Link>
-        <AddToCartButton>Do koszyka</AddToCartButton>
+        <AddToCartButton onClick={() => addProduct(product)}>
+          Do koszyka
+        </AddToCartButton>
       </CtaWrapper>
     </StyledProductCard>
   );
