@@ -4,13 +4,7 @@ import { Layout } from "../components/templates";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-  const {
-    state,
-    addProduct,
-    removeProduct,
-    decreaseProductAmount,
-    clearCartItems,
-  } = useCart();
+  const { state } = useCart();
 
   return (
     <Layout title="Koszyk">

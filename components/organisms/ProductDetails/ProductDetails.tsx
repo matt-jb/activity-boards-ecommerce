@@ -16,15 +16,23 @@ export default function ProductDetails({ product }: Props) {
   const [currImg, setCurrImg] = useState(0);
   const [galleryMode, setGalleryMode] = useState(false);
 
+  function handleCurrImg(img: number) {
+    setCurrImg(img);
+  }
+
+  function handleGalleryMode(val: boolean) {
+    setGalleryMode(val);
+  }
+
   return (
     <>
       {galleryMode && (
         <GalleryComponent
-          onClick={() => setGalleryMode(false)}
+          onClick={() => handleGalleryMode(false)}
           name={name}
           images={images}
           currImg={currImg}
-          setCurrImg={setCurrImg}
+          handleCurrImg={handleCurrImg}
         />
       )}
       <DetailsOverview>
@@ -32,8 +40,8 @@ export default function ProductDetails({ product }: Props) {
           name={name}
           images={images}
           currImg={currImg}
-          setCurrImg={setCurrImg}
-          setGalleryMode={setGalleryMode}
+          handleCurrImg={handleCurrImg}
+          handleGalleryMode={handleGalleryMode}
         />
         <ProductDescription product={product} />
       </DetailsOverview>

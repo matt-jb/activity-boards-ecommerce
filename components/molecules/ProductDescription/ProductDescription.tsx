@@ -1,4 +1,5 @@
 import React from "react";
+import { useCart } from "../../../context/CartContext";
 import { IProduct } from "../../../utils/types";
 import {
   ActionButton,
@@ -11,7 +12,9 @@ interface Props {
 }
 
 export default function ProductDescription({ product }: Props) {
-  const { id, name, price, description, width, height } = product;
+  const { name, price, description, width, height } = product;
+  const { addProduct } = useCart();
+
   return (
     <DescriptionSection>
       <p>
@@ -27,7 +30,7 @@ export default function ProductDescription({ product }: Props) {
         <span>Wymiary</span> (szer. x wys.): {width} cm x {height} cm
       </p>
       <ButtonsContainer>
-        <ActionButton onClick={() => console.log(`Added to cart!`)} cart>
+        <ActionButton onClick={() => addProduct(product)} cart>
           Dodaj do koszyka
         </ActionButton>
         <ActionButton onClick={() => console.log(`Added to wish list!`)}>

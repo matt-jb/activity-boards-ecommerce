@@ -45,4 +45,4 @@ export type ActionsType =
       payload: { product: IProduct; cartProductIndex: number; newQty: number };
     }
   | { type: "remove-cart-item"; payload: { cartProductIndex: number } }
-  | { type: "clear-cart-items"; payload: null };
+  | { type: "clear-cart-items" };

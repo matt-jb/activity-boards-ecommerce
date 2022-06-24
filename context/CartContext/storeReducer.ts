@@ -1,4 +1,4 @@
-import { ActionsType, ICartItem } from "./types";
+import { ActionsType, ICartItem } from "../../utils/types";
 
 export function storeReducer(state: Array<ICartItem>, action: ActionsType) {
   switch (action.type) {

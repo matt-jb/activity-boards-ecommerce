@@ -46,8 +46,9 @@ export const FullScreenImageContainer = styled.div`
 
   @media only screen and (max-width: 600px) {
     width: 100vw;
-    height: 100rem;
+    height: 105rem;
     align-self: flex-start;
     margin-top: 0;
+    overflow: hidden;
   }
 `;

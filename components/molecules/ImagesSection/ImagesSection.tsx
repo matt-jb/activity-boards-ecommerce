@@ -11,20 +11,20 @@ interface Props {
   name: string;
   images: Array<string | StaticImageData>;
   currImg: number;
-  setCurrImg: (img: number) => void;
-  setGalleryMode: (val: boolean) => void;
+  handleCurrImg: (img: number) => void;
+  handleGalleryMode: (val: boolean) => void;
 }
 
 export default function ImagesSection({
   name,
   images,
   currImg,
-  setCurrImg,
-  setGalleryMode,
+  handleCurrImg,
+  handleGalleryMode,
 }: Props) {
   return (
     <StyledImagesSection>
-      <MainImageContainer onClick={() => setGalleryMode(true)}>
+      <MainImageContainer onClick={() => handleGalleryMode(true)}>
         <Image
           src={images[currImg]}
           alt={name}
@@ -36,15 +36,9 @@ export default function ImagesSection({
         {images.map((image, i) => (
           <GalleryImageContainer
             key={`${name}${i}`}
-            onClick={() => setCurrImg(i)}
+            onClick={() => handleCurrImg(i)}
           >
-            <Image
-              src={image}
-              alt={name}
-              layout="fill"
-              objectFit="cover"
-              className="active"
-            />
+            <Image src={image} alt={name} layout="fill" objectFit="cover" />
           </GalleryImageContainer>
         ))}
       </GallerySection>

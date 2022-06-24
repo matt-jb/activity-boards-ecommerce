@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import { useStoreReducer } from "../hooks/useStoreReducer";
-import { ICartItem, IProduct } from "../utils/types";
+import { useStoreReducer } from "./useStoreReducer";
+import { ICartItem, IProduct } from "../../utils/types";
 
 interface ICartContext {
   state: Array<ICartItem>;

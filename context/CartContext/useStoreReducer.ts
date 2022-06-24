@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
-import { storeReducer } from "../utils/storeReducer";
-import { ICartItem, IProduct } from "../utils/types";
-import { getProductIndex } from "../utils/utils";
+import { storeReducer } from "./storeReducer";
+import { ICartItem, IProduct } from "../../utils/types";
+import { getProductIndex } from "../../utils/utils";
 
 function setInitialState() {
   if (typeof window !== "undefined") {
@@ -63,7 +63,6 @@ export function useStoreReducer() {
   function clearCartItems() {
     dispatch({
       type: "clear-cart-items",
-      payload: null,
     });
   }
 

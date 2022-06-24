@@ -8,7 +8,7 @@ interface Props {
   name: string;
   images: Array<string | StaticImageData>;
   currImg: number;
-  setCurrImg: (img: number) => void;
+  handleCurrImg: (img: number) => void;
   onClick: () => void;
 }
 
@@ -16,23 +16,22 @@ export default function GalleryComponent({
   name,
   images,
   currImg,
-  setCurrImg,
+  handleCurrImg,
   onClick,
 }: Props) {
   const length = images.length;
   const handlers = useSwipeable({
     onSwipedLeft: () => prevImg(),
     onSwipedRight: () => nextImg(),
-    onSwipedDown: () => null,
   });
 
   function nextImg(e?: MouseEvent) {
-    setCurrImg(currImg === length - 1 ? 0 : currImg + 1);
+    handleCurrImg(currImg === length - 1 ? 0 : currImg + 1);
     e?.stopPropagation();
   }
 
   function prevImg(e?: MouseEvent) {
-    setCurrImg(currImg === 0 ? length - 1 : currImg - 1);
+    handleCurrImg(currImg === 0 ? length - 1 : currImg - 1);
     e?.stopPropagation();
   }
 
