@@ -9,8 +9,8 @@ export function getShortDescription(description: string) {
 
 export const validate = {
   email: Yup.string()
-    .email("Nieprawidłowy adres Email")
-    .required("Adres Email jest wymagany"),
+    .email("Nieprawidłowy adres Email.")
+    .required("Adres Email jest wymagany."),
   password: Yup.string()
     .required("Hasło jest wymagane.")
     .min(
@@ -20,6 +20,13 @@ export const validate = {
   confirmPassword: Yup.string()
     .required("Potwierdzenie hasła jest wymagane.")
     .oneOf([Yup.ref("password"), null], "Oba hasła muszą być takie same."),
+  name: Yup.string().required("Imię i nazwisko są wymagane."),
+  address: Yup.string().required("Adres jest wymagany."),
+  zipCode: Yup.string()
+    .required("Kod pocztowy jest wymagany.")
+    .matches(/^\d{2}-\d{3}/, "Podaj kod pocztowy w formacie XX-XXX"),
+  city: Yup.string().required("Musisz podać miasto."),
+  notes: Yup.string(),
 };
 
 export function getItemsNumber(state: Array<ICartItem>) {

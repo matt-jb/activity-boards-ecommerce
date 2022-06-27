@@ -9,6 +9,7 @@ import ImagesSection from "./ImagesSection/ImagesSection";
 import ProductDescription from "./ProductDescription/ProductDescription";
 import GrandTotalSection from "./GrandTotalSection/GrandTotalSection";
 import CartItemControls from "./CartItemControls/CartItemControls";
+import UserDetailsFields from "./UserDetailsFields/UserDetailsFields";
 
 export {
   InfoBar,
@@ -22,4 +23,5 @@ export {
   ProductDescription,
   GrandTotalSection,
   CartItemControls,
+  UserDetailsFields,
 };
