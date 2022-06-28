@@ -12,6 +12,7 @@ import ProductsWrapper from "./ProductsWrapper/ProductsWrapper";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Spinner from "./Spinner/Spinner";
 import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
+import CheckoutForm from "./CheckoutForm/CheckoutForm";
 
 export {
   Alert,
@@ -28,4 +29,5 @@ export {
   Spinner,
   ProtectedRoute,
   NoItemsInCart,
+  CheckoutForm,
 };

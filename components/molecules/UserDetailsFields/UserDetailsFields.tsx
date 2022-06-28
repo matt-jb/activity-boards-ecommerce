@@ -14,6 +14,9 @@ export default function UserDetailsForm({ formik }: Props) {
       <UserDetailsLabel htmlFor="lName">Nazwisko:</UserDetailsLabel>
       <FormInput id="lName" type="text" label="Nazwisko" formik={formik} />
 
+      <UserDetailsLabel htmlFor="phoneNumber">Telefon:</UserDetailsLabel>
+      <FormInput id="phoneNumber" type="text" label="Telefon" formik={formik} />
+
       <UserDetailsLabel htmlFor="addressL1">Adres:</UserDetailsLabel>
       <FormInput id="addressL1" type="text" label="Adres" formik={formik} />
 

@@ -3,32 +3,35 @@ import { useAuth } from "../../../context/AuthContext";
 import { UserDetailsFields } from "../../molecules";
 import * as Yup from "yup";
 import { useAlert } from "../../../context/AlertContext";
-import { validate } from "../../../utils/utils";
+import { getGrandTotal, validate } from "../../../utils/utils";
 import { useFormik } from "formik";
 import {
-  ButtonWrapper,
   FieldsWrapper,
   StyledError,
   StyledTextArea,
   SubmitButton,
-  TextAreaWrapper,
   UserDetailsLabel,
 } from "./PurchaseDetailsForm.styles";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { db } from "../../../lib/clientAuth";
+import { useCart } from "../../../context/CartContext";
 
 const initialValues = {
   fName: "",
   lName: "",
+  phoneNumber: "",
   addressL1: "",
   addressL2: "",
   zipCode: "",
   city: "",
   notes: "",
 };
-const { name, address, zipCode, city, notes } = validate;
+const { name, phoneNumber, address, zipCode, city, notes } = validate;
 
 export default function PurchaseDetailsForm() {
   const router = useRouter();
   const { user } = useAuth();
+  const { state } = useCart();
   const { addAlert } = useAlert();
 
   const formik = useFormik({
@@ -36,22 +39,47 @@ export default function PurchaseDetailsForm() {
     validationSchema: Yup.object({
       fName: name,
       lName: name,
+      phoneNumber,
       addressL1: address,
       zipCode,
       city,
       notes,
     }),
     onSubmit: (values, { setSubmitting }) => {
-      const { fName, lName, addressL1, addressL2, zipCode, city, notes } =
-        values;
+      const {
+        fName,
+        lName,
+        phoneNumber,
+        addressL1,
+        addressL2,
+        zipCode,
+        city,
+        notes,
+      } = values;
 
-      console.log(`fName: ${fName}`);
-      console.log(`lName: ${lName}`);
-      console.log(`addressL1: ${addressL1}`);
-      console.log(`addressL2: ${addressL2}`);
-      console.log(`zipCode: ${zipCode}`);
-      console.log(`city: ${city}`);
-      console.log(`notes: ${notes}`);
+      addDoc(collection(db, "orders"), {
+        order: state,
+        total: getGrandTotal(state),
+        fName,
+        lName,
+        phoneNumber,
+        addressL1,
+        addressL2,
+        zipCode,
+        city,
+        notes,
+        paid: false,
+        createdBy: user?.uid || "anonymous",
+        createdAt: Timestamp.fromDate(new Date()),
+      })
+        .then(async (docRef) => {
+          router.push(`/cart/payment/${docRef.id}`);
+        })
+        .catch((err) => {
+          addAlert("warning", `Wystąpił błąd: ${err}`);
+          router.push(`/`);
+        });
+
       setSubmitting(false);
     },
   });
@@ -66,12 +94,10 @@ export default function PurchaseDetailsForm() {
           {formik.touched.notes && formik.errors.notes && (
             <StyledError>{formik.errors.notes}</StyledError>
           )}
-        </FieldsWrapper>
-        <ButtonWrapper>
           <SubmitButton type="submit" disabled={formik.isSubmitting}>
             Kup z obowiązkiem zapłaty
           </SubmitButton>
-        </ButtonWrapper>
+        </FieldsWrapper>
       </form>
     </>
   );
