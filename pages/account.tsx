@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { LoginButton } from "../components/atoms";
+import { RegularButton } from "../components/atoms";
 import { Layout } from "../components/templates";
 import { useAlert } from "../context/AlertContext";
 import { useAuth } from "../context/AuthContext";
@@ -20,7 +20,7 @@ export default function Account() {
     <Layout title="Twoje konto">
       <p>Twoje ID: {user?.uid}</p>
       <p>Twój adres email: {user?.email}</p>
-      <LoginButton onClick={() => signOut()} text="Wyloguj" />
+      <RegularButton onClick={() => signOut()} text="Wyloguj" />
     </Layout>
   );
 }

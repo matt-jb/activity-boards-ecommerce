@@ -4,7 +4,7 @@ import { UserDetailsFields } from "../../molecules";
 import * as Yup from "yup";
 import { useAlert } from "../../../context/AlertContext";
 import { getGrandTotal, validate } from "../../../utils/utils";
-import { useFormik } from "formik";
+import { Field, FormikProvider, useFormik } from "formik";
 import {
   FieldsWrapper,
   StyledError,
@@ -77,7 +77,6 @@ export default function PurchaseDetailsForm() {
         })
         .catch((err) => {
           addAlert("warning", `Wystąpił błąd: ${err}`);
-          router.push(`/`);
         });
 
       setSubmitting(false);
@@ -88,15 +87,23 @@ export default function PurchaseDetailsForm() {
     <>
       <form onSubmit={formik.handleSubmit}>
         <FieldsWrapper>
-          <UserDetailsFields formik={formik} />
-          <UserDetailsLabel htmlFor="notes">Uwagi:</UserDetailsLabel>
-          <StyledTextArea id="notes" {...formik.getFieldProps(`${notes}`)} />
-          {formik.touched.notes && formik.errors.notes && (
-            <StyledError>{formik.errors.notes}</StyledError>
-          )}
-          <SubmitButton type="submit" disabled={formik.isSubmitting}>
-            Kup z obowiązkiem zapłaty
-          </SubmitButton>
+          <FormikProvider value={formik}>
+            <UserDetailsFields formik={formik} />
+            <UserDetailsLabel htmlFor="notes">Uwagi:</UserDetailsLabel>
+            <Field name="notes">
+              {({ field, meta }: any) => (
+                <>
+                  <StyledTextArea id="notes" {...field} />
+                  {meta.touched && meta.error && (
+                    <StyledError>{meta.error}</StyledError>
+                  )}
+                </>
+              )}
+            </Field>
+            <SubmitButton type="submit" disabled={formik.isSubmitting}>
+              Kup z obowiązkiem zapłaty
+            </SubmitButton>
+          </FormikProvider>
         </FieldsWrapper>
       </form>
     </>

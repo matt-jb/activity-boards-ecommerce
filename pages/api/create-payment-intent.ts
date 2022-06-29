@@ -7,7 +7,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { amount } = req.body;
-  console.log(amount);
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({

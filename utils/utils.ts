@@ -7,6 +7,27 @@ export function getShortDescription(description: string) {
   return description;
 }
 
+export function getItemsNumber(state: Array<ICartItem>) {
+  return state.reduce((prev, curr) => {
+    return prev + curr.qty;
+  }, 0);
+}
+
+export function getTotalForItem(product: ICartItem) {
+  return product.qty * product.item.price;
+}
+
+export function getGrandTotal(state: Array<ICartItem>) {
+  return state.reduce((prev, curr) => {
+    return prev + getTotalForItem(curr);
+  }, 0);
+}
+
+export function getProductIndex(product: IProduct, state: Array<ICartItem>) {
+  const { id } = product;
+  return state.findIndex((product) => product.item.id === id);
+}
+
 export const validate = {
   email: Yup.string()
     .email("Nieprawidłowy adres Email.")
@@ -32,28 +53,7 @@ export const validate = {
     .required("Musisz podać numer telefonu")
     .matches(
       /^\d{3}\d{3}\d{3}/g,
-      "Podaj numer telefonu jako ciąg 9 cyfr, bez spacji czy myślników."
+      "Podaj numer telefonu jako ciąg 9 cyfr, bez spacji i myślników."
     )
     .length(9, "Numer telefonu jest zbyt długi."),
 };
-
-export function getItemsNumber(state: Array<ICartItem>) {
-  return state.reduce((prev, curr) => {
-    return prev + curr.qty;
-  }, 0);
-}
-
-export function getTotalForItem(product: ICartItem) {
-  return product.qty * product.item.price;
-}
-
-export function getGrandTotal(state: Array<ICartItem>) {
-  return state.reduce((prev, curr) => {
-    return prev + getTotalForItem(curr);
-  }, 0);
-}
-
-export function getProductIndex(product: IProduct, state: Array<ICartItem>) {
-  const { id } = product;
-  return state.findIndex((product) => product.item.id === id);
-}

@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Layout } from "../../../components/templates";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { CheckoutForm } from "../../../components/atoms";
+import { CheckoutForm, Spinner } from "../../../components/atoms";
 import { useCart } from "../../../context/CartContext";
 import { getGrandTotal } from "../../../utils/utils";
 
@@ -14,8 +13,6 @@ const stripePromise = loadStripe(
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState("");
   const { state } = useCart();
-  const router = useRouter();
-  const { id } = router.query;
   const amount = getGrandTotal(state) * 100; // just PLN things
 
   useEffect(() => {
@@ -39,13 +36,15 @@ export default function Payment() {
 
   return (
     <Layout title="Płatność za zamówienie">
-      {clientSecret && (
+      {clientSecret ? (
         <Elements
           options={options as StripeElementsOptions}
           stripe={stripePromise}
         >
           <CheckoutForm />
         </Elements>
+      ) : (
+        <Spinner />
       )}
     </Layout>
   );

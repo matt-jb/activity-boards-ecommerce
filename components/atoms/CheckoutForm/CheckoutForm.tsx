@@ -3,14 +3,20 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
+import { RegularButton } from "../index";
+import { StyledError } from "./CheckoutForm.styles";
+import { Spinner } from "../";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
+  const router = useRouter();
+  const { id } = router.query;
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!stripe) {
@@ -55,8 +61,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // TODO
-        return_url: "http://localhost:3000",
+        return_url: `http://localhost:3000/cart/success?order=${id}`,
       },
     });
 
@@ -71,18 +76,16 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={(e) => handleSubmit(e)}>
-      <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? (
-            <div className="spinner" id="spinner"></div>
-          ) : (
-            "Zapłać teraz"
-          )}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      <PaymentElement onReady={() => setIsReady(true)} />
+      {isReady ? (
+        <RegularButton
+          text={isLoading ? "Procesujemy płatność..." : "Zapłać teraz"}
+          disabled={isLoading || !stripe || !elements}
+        />
+      ) : (
+        <Spinner />
+      )}
+      {message && <StyledError>{message}</StyledError>}
     </form>
   );
 }

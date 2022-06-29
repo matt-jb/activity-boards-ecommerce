@@ -1,7 +1,7 @@
 import { CartWrapper } from "./CartSummary.styles";
 import { useCart } from "../../../context/CartContext";
 import { ICartItem } from "../../../utils/types";
-import { LoginButton } from "../../atoms";
+import { RegularButton } from "../../atoms";
 import { GrandTotalSection, CartItemControls } from "../../molecules";
 import { useRouter } from "next/router";
 
@@ -18,12 +18,12 @@ export default function CartSummary() {
         />
       ))}
       <GrandTotalSection />
-      <LoginButton
+      <RegularButton
         onClick={() => router.push("/cart/details")}
         text="Do kasy"
         blue
       />
-      <LoginButton
+      <RegularButton
         onClick={() => {
           clearCartItems();
         }}

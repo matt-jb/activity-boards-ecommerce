@@ -10,6 +10,7 @@ import ProductDescription from "./ProductDescription/ProductDescription";
 import GrandTotalSection from "./GrandTotalSection/GrandTotalSection";
 import CartItemControls from "./CartItemControls/CartItemControls";
 import UserDetailsFields from "./UserDetailsFields/UserDetailsFields";
+import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 
 export {
   InfoBar,
@@ -24,4 +25,5 @@ export {
   GrandTotalSection,
   CartItemControls,
   UserDetailsFields,
+  CheckoutSuccess,
 };
