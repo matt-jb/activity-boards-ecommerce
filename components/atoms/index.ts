@@ -3,7 +3,7 @@ import DeleteButton from "./DeleteButton/DeleteButton";
 import EditButton from "./EditButton/EditButton";
 import FooterLink from "./FooterLink/FooterLink";
 import FormInput from "./FormInput/FormInput";
-import LoginButton from "./LoginButton/LoginButton";
+import RegularButton from "./RegularButton/RegularButton";
 import Logo from "./Logo/Logo";
 import NavLink from "./NavLink/NavLink";
 import NotFound from "./NotFound/NotFound";
@@ -12,6 +12,7 @@ import ProductsWrapper from "./ProductsWrapper/ProductsWrapper";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Spinner from "./Spinner/Spinner";
 import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
+import CheckoutForm from "./CheckoutForm/CheckoutForm";
 
 export {
   Alert,
@@ -19,7 +20,7 @@ export {
   EditButton,
   FooterLink,
   FormInput,
-  LoginButton,
+  RegularButton,
   Logo,
   NavLink,
   NotFound,
@@ -28,4 +29,5 @@ export {
   Spinner,
   ProtectedRoute,
   NoItemsInCart,
+  CheckoutForm,
 };

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { LoginButton } from "../components/atoms";
+import { RegularButton } from "../components/atoms";
 import { Layout } from "../components/templates";
 import { LoginWithEmail } from "../components/molecules";
 import { LoginType } from "../utils/types";
@@ -42,16 +42,16 @@ export default function Login() {
 
   return (
     <Layout title={`Zaloguj się`}>
-      <LoginButton
+      <RegularButton
         onClick={() => setDisplayLogin((prev) => !prev)}
         text="Zaloguj się przez Email"
       />
       {displayLogin && <LoginWithEmail />}
-      <LoginButton
+      <RegularButton
         onClick={() => loginWithPopup("google")}
         text="Zaloguj się przez Google"
       />
-      <LoginButton
+      <RegularButton
         onClick={() => loginWithPopup("github")}
         text="Zaloguj się przez GitHub"
       />

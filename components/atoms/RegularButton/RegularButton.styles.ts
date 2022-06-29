@@ -7,7 +7,10 @@ export const StyledContainer = styled.div`
   align-items: center;
 `;
 
-export const StyledButton = styled.button<{ blue?: boolean }>`
+export const StyledButton = styled.button<{
+  blue?: boolean;
+  disabled?: boolean;
+}>`
   width: 30rem;
   height: 5rem;
   background-color: ${(props) =>
@@ -18,6 +21,7 @@ export const StyledButton = styled.button<{ blue?: boolean }>`
   font-family: "Poppins", serif;
   font-weight: 600;
   text-transform: uppercase;
+  color: ${(props) => (props.disabled ? `var(--lightGrey2)` : `var(--black)`)};
   border: none;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -27,11 +31,14 @@ export const StyledButton = styled.button<{ blue?: boolean }>`
   &:hover {
     background-color: ${(props) =>
       props.blue ? `var(--darkBlue)` : `var(--intensivePink)`};
-    box-shadow: 0.1rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.15);
-    color: var(--white);
+    box-shadow: ${(props) =>
+      props.disabled ? `none` : `0.1rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.15)`};
+    color: ${(props) =>
+      props.disabled ? `var(--lightGrey2)` : `var(--white)`};
   }
 
   &:active {
-    background-color: var(--darkBlue);
+    background-color: ${(props) =>
+      props.disabled ? `var(--lightGrey2)` : `var(--darkBlue)`};
   }
 `;
