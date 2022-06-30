@@ -16,7 +16,7 @@ import { useCart } from "../../../context/CartContext";
 import { IPaymentFormData } from "../../../utils/types";
 import { createOrder } from "../../../lib/payments";
 
-const initialValues: IPaymentFormData = {
+const initialValues = {
   fName: "",
   lName: "",
   phoneNumber: "",

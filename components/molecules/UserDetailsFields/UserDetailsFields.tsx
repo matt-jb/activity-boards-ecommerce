@@ -4,7 +4,7 @@ interface Props {
   formik: any;
 }
 
-export default function UserDetailsForm({ formik }: Props) {
+export default function UserDetailsFields({ formik }: Props) {
   return (
     <>
       <FormInput id="fName" type="text" label="Imię" formik={formik} />

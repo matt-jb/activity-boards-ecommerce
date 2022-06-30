@@ -11,7 +11,7 @@ export interface IProduct {
   height: number;
 }
 
-export interface IPaymentFormData {
+export interface IUserFormData {
   fName: string;
   lName: string;
   phoneNumber: string;
