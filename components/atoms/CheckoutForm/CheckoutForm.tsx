@@ -16,7 +16,7 @@ export default function CheckoutForm() {
   const { id } = router.query;
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [paymentElementVisible, setPaymentElementVisible] = useState(false);
 
   useEffect(() => {
     if (!stripe) {
@@ -76,8 +76,8 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={(e) => handleSubmit(e)}>
-      <PaymentElement onReady={() => setIsReady(true)} />
-      {isReady ? (
+      <PaymentElement onReady={() => setPaymentElementVisible(true)} />
+      {paymentElementVisible ? (
         <RegularButton
           text={isLoading ? "Procesujemy płatność..." : "Zapłać teraz"}
           disabled={isLoading || !stripe || !elements}

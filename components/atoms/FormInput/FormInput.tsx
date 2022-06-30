@@ -1,4 +1,4 @@
-import { StyledError, StyledInput } from "./FormInput.styles";
+import { StyledError, StyledInput, UserDetailsLabel } from "./FormInput.styles";
 
 interface Props {
   id: string;
@@ -10,6 +10,7 @@ interface Props {
 export default function FormInput({ id, label, type, formik }: Props) {
   return (
     <>
+      <UserDetailsLabel htmlFor={id}>{label}:</UserDetailsLabel>
       <StyledInput
         id={id}
         type={type}

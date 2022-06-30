@@ -12,10 +12,7 @@ export default function CartSummary() {
   return (
     <CartWrapper>
       {state.map((product: ICartItem) => (
-        <CartItemControls
-          key={`${product.item.id}${product.item.name}`}
-          product={product}
-        />
+        <CartItemControls key={product.item.id} product={product} />
       ))}
       <GrandTotalSection />
       <RegularButton

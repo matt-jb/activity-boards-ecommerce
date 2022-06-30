@@ -1,11 +1,10 @@
-import { doc, updateDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Spinner } from "../../components/atoms";
 import { CheckoutSuccess } from "../../components/molecules";
 import { Layout } from "../../components/templates";
 import { useCart } from "../../context/CartContext";
-import { db } from "../../lib/clientAuth";
+import { markPaid } from "../../lib/payments";
 
 export default function Success() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,17 +19,11 @@ export default function Success() {
       return;
     }
 
-    async function markPaid() {
-      const orderRef = doc(db, "orders", `${order}`);
-      await updateDoc(orderRef, {
-        paid: true,
-      }).catch((err) => {
-        console.log(setError(err));
-      });
-    }
-    markPaid();
-    clearCartItems();
+    markPaid(order as string).catch((err) => {
+      setError(err);
+    });
 
+    clearCartItems();
     setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -11,12 +11,23 @@ export interface IProduct {
   height: number;
 }
 
+export interface IPaymentFormData {
+  fName: string;
+  lName: string;
+  phoneNumber: string;
+  addressL1: string;
+  addressL2: string;
+  zipCode: string;
+  city: string;
+  notes: string;
+}
+
 export interface INavLink {
   text: string;
   url: string;
 }
 
-interface IUser {
+export interface IUser {
   uid: string;
   email: string | null;
 }
