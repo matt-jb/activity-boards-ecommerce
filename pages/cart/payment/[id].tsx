@@ -5,10 +5,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import { CheckoutForm, Spinner } from "../../../components/atoms";
 import { useCart } from "../../../context/CartContext";
 import { getGrandTotal } from "../../../utils/utils";
+import { createPaymentIntent } from "../../../lib/payments";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
+
+const appearance = {
+  theme: "stripe",
+};
 
 export default function Payment() {
   const [clientSecret, setClientSecret] = useState("");
@@ -16,19 +21,12 @@ export default function Payment() {
   const amount = getGrandTotal(state) * 100; // just PLN things
 
   useEffect(() => {
-    fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount }),
-    })
+    createPaymentIntent(amount)
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const appearance = {
-    theme: "stripe",
-  };
   const options = {
     clientSecret,
     appearance,

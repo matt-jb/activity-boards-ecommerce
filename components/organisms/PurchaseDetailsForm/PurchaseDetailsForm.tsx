@@ -3,7 +3,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { UserDetailsFields } from "../../molecules";
 import * as Yup from "yup";
 import { useAlert } from "../../../context/AlertContext";
-import { getGrandTotal, validate } from "../../../utils/utils";
+import { validate } from "../../../utils/utils";
 import { Field, FormikProvider, useFormik } from "formik";
 import {
   FieldsWrapper,
@@ -12,11 +12,11 @@ import {
   SubmitButton,
   UserDetailsLabel,
 } from "./PurchaseDetailsForm.styles";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { db } from "../../../lib/clientAuth";
 import { useCart } from "../../../context/CartContext";
+import { IPaymentFormData } from "../../../utils/types";
+import { createOrder } from "../../../lib/payments";
 
-const initialValues = {
+const initialValues: IPaymentFormData = {
   fName: "",
   lName: "",
   phoneNumber: "",
@@ -45,33 +45,8 @@ export default function PurchaseDetailsForm() {
       city,
       notes,
     }),
-    onSubmit: (values, { setSubmitting }) => {
-      const {
-        fName,
-        lName,
-        phoneNumber,
-        addressL1,
-        addressL2,
-        zipCode,
-        city,
-        notes,
-      } = values;
-
-      addDoc(collection(db, "orders"), {
-        order: state,
-        total: getGrandTotal(state),
-        fName,
-        lName,
-        phoneNumber,
-        addressL1,
-        addressL2,
-        zipCode,
-        city,
-        notes,
-        paid: false,
-        createdBy: user?.uid || "anonymous",
-        createdAt: Timestamp.fromDate(new Date()),
-      })
+    onSubmit: async (values, { setSubmitting }) => {
+      await createOrder(state, values, user)
         .then(async (docRef) => {
           router.push(`/cart/payment/${docRef.id}`);
         })

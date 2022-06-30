@@ -8,7 +8,6 @@ export default async function handler(
 ) {
   const { amount } = req.body;
 
-  // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount,
     currency: "PLN",
