@@ -9,7 +9,14 @@ export default function SingleOrder({ order }: Props) {
   return (
     <OrderControls>
       <Container>
-        Przedmiotów w koszyku: <span>{order.order.length}</span>
+        Kupione przedmioty:
+        {order.order.map((purchase) => {
+          return (
+            <p key={purchase.item.name}>
+              <span>{purchase.item.name} </span>({purchase.qty})
+            </p>
+          );
+        })}
       </Container>
       <Container>
         Kwota: <span>{order.total},00 zł</span>

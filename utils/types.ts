@@ -29,7 +29,7 @@ export interface IUser extends IUserFormData {
 
 export interface IOrder extends IUserFormData {
   id: string;
-  order: IProduct[];
+  order: ICartItem[];
   total: number;
   createdBy: string;
   paid: boolean;
