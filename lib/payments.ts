@@ -8,12 +8,12 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "./clientAuth";
-import { ICartItem, IPaymentFormData, UserType } from "../utils/types";
+import { ICartItem, IUserFormData, UserType } from "../utils/types";
 import { getGrandTotal } from "../utils/utils";
 
 export async function createOrder(
   state: Array<ICartItem>,
-  values: IPaymentFormData,
+  values: IUserFormData,
   user?: UserType
 ): Promise<DocumentReference<DocumentData>> {
   const {
@@ -39,6 +39,7 @@ export async function createOrder(
     city,
     notes,
     paid: false,
+    status: "Przyjęto do realizacji",
     createdBy: user?.uid || "anonymous",
     createdAt: Timestamp.fromDate(new Date()),
   });

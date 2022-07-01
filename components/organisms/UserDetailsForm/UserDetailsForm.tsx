@@ -5,39 +5,25 @@ import { SubmitButton } from "../PurchaseDetailsForm/PurchaseDetailsForm.styles"
 import { UserDetailsFields } from "../../molecules";
 import { FieldsWrapper } from "./UserDetailsForm.styles";
 import { useAuth } from "../../../context/AuthContext";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../../lib/clientAuth";
 import { useAlert } from "../../../context/AlertContext";
-import { getUserDetails } from "../../../lib/userControls";
-import { useEffect } from "react";
+import { saveUserDetails } from "../../../lib/userControls";
 
 const { name, phoneNumber, address, zipCode, city } = validate;
 
 export default function UserDetailsForm() {
-  const { user } = useAuth();
   const { addAlert } = useAlert();
-  let initialValues = {
-    fName: "",
-    lName: "",
-    phoneNumber: "",
-    addressL1: "",
-    addressL2: "",
-    zipCode: "",
-    city: "",
+  const { user, updateUserCtx } = useAuth();
+  const initialValues = {
+    fName: user?.fName || "",
+    lName: user?.lName || "",
+    phoneNumber: user?.phoneNumber || "",
+    addressL1: user?.addressL1 || "",
+    addressL2: user?.addressL2 || "",
+    zipCode: user?.zipCode || "",
+    city: user?.city || "",
   };
 
-  // getUserDetails(user!.uid).then((vals) => {
-  //   initialValues = vals;
-  // });
-
-  // useEffect(() => {
-  //   getUserDetails(user!.uid).then((vals) => {
-  //     initialValues = vals;
-  //   });
-  // }, []);
-
   const formik = useFormik({
-    enableReinitialize: true,
     initialValues,
     validationSchema: Yup.object({
       fName: name,
@@ -48,20 +34,13 @@ export default function UserDetailsForm() {
       city,
     }),
     onSubmit: async (values, { setSubmitting }) => {
-      const { fName, lName, phoneNumber, addressL1, addressL2, zipCode, city } =
-        values;
-      await setDoc(doc(db, "users", user!.uid), {
-        fName,
-        lName,
-        phoneNumber,
-        addressL1,
-        addressL2,
-        zipCode,
-        city,
-      })
+      await saveUserDetails(user!.uid, values)
         .then(() => {
           window.scrollTo(0, 0);
           addAlert("success", "Poprawnie zapisano dane użytkownika.");
+        })
+        .then(() => {
+          updateUserCtx(values);
         })
         .catch((err) => {
           addAlert("warning", err);

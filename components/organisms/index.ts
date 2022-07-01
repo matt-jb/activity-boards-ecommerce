@@ -5,6 +5,7 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import CartSummary from "./CartSummary/CartSummary";
 import PurchaseDetailsForm from "./PurchaseDetailsForm/PurchaseDetailsForm";
 import UserDetailsForm from "./UserDetailsForm/UserDetailsForm";
+import OrdersList from "./OrdersList/OrdersList";
 
 export {
   Footer,
@@ -14,4 +15,5 @@ export {
   CartSummary,
   PurchaseDetailsForm,
   UserDetailsForm,
+  OrdersList,
 };
