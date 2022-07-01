@@ -11,6 +11,7 @@ import GrandTotalSection from "./GrandTotalSection/GrandTotalSection";
 import CartItemControls from "./CartItemControls/CartItemControls";
 import UserDetailsFields from "./UserDetailsFields/UserDetailsFields";
 import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
+import UserDeletion from "./UserDeletion/UserDeletion";
 
 export {
   InfoBar,
@@ -26,4 +27,5 @@ export {
   CartItemControls,
   UserDetailsFields,
   CheckoutSuccess,
+  UserDeletion,
 };

@@ -12,7 +12,7 @@ export const StyledButton = styled.button<{
   disabled?: boolean;
 }>`
   width: 30rem;
-  height: 5rem;
+  min-height: 5rem;
   background-color: ${(props) =>
     props.blue ? `var(--lightBlue)` : `var(--pink)`};
   margin-top: 1rem;
@@ -40,5 +40,9 @@ export const StyledButton = styled.button<{
   &:active {
     background-color: ${(props) =>
       props.disabled ? `var(--lightGrey2)` : `var(--darkBlue)`};
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 90%;
   }
 `;

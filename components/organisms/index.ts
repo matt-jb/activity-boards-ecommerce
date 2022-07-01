@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard/ProductCard";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import CartSummary from "./CartSummary/CartSummary";
 import PurchaseDetailsForm from "./PurchaseDetailsForm/PurchaseDetailsForm";
+import UserDetailsForm from "./UserDetailsForm/UserDetailsForm";
+import OrdersList from "./OrdersList/OrdersList";
 
 export {
   Footer,
@@ -12,4 +14,6 @@ export {
   ProductDetails,
   CartSummary,
   PurchaseDetailsForm,
+  UserDetailsForm,
+  OrdersList,
 };

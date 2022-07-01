@@ -11,7 +11,7 @@ export const StyledAlert = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 80%;
-  height: 3rem;
+  min-height: 3rem;
   margin: 1rem auto;
   padding-left: 2rem;
   padding-right: 2rem;

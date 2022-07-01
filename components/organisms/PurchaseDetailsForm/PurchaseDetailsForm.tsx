@@ -13,26 +13,26 @@ import {
   UserDetailsLabel,
 } from "./PurchaseDetailsForm.styles";
 import { useCart } from "../../../context/CartContext";
-import { IPaymentFormData } from "../../../utils/types";
 import { createOrder } from "../../../lib/payments";
+import { saveUserDetails } from "../../../lib/userControls";
 
-const initialValues: IPaymentFormData = {
-  fName: "",
-  lName: "",
-  phoneNumber: "",
-  addressL1: "",
-  addressL2: "",
-  zipCode: "",
-  city: "",
-  notes: "",
-};
 const { name, phoneNumber, address, zipCode, city, notes } = validate;
 
 export default function PurchaseDetailsForm() {
   const router = useRouter();
-  const { user } = useAuth();
   const { state } = useCart();
   const { addAlert } = useAlert();
+  const { user, updateUserCtx } = useAuth();
+  const initialValues = {
+    fName: user?.fName || "",
+    lName: user?.lName || "",
+    phoneNumber: user?.phoneNumber || "",
+    addressL1: user?.addressL1 || "",
+    addressL2: user?.addressL2 || "",
+    zipCode: user?.zipCode || "",
+    city: user?.city || "",
+    notes: "",
+  };
 
   const formik = useFormik({
     initialValues,
@@ -52,6 +52,14 @@ export default function PurchaseDetailsForm() {
         })
         .catch((err) => {
           addAlert("warning", `Wystąpił błąd: ${err}`);
+        });
+
+      await saveUserDetails(user!.uid, values)
+        .then(() => {
+          updateUserCtx(values);
+        })
+        .catch((err) => {
+          console.log(err);
         });
 
       setSubmitting(false);

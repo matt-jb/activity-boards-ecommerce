@@ -11,7 +11,7 @@ export interface IProduct {
   height: number;
 }
 
-export interface IPaymentFormData {
+export interface IUserFormData {
   fName: string;
   lName: string;
   phoneNumber: string;
@@ -19,17 +19,26 @@ export interface IPaymentFormData {
   addressL2: string;
   zipCode: string;
   city: string;
-  notes: string;
+  notes?: string;
+}
+
+export interface IUser extends IUserFormData {
+  uid: string;
+  email: string | null;
+}
+
+export interface IOrder extends IUserFormData {
+  id: string;
+  order: IProduct[];
+  total: number;
+  createdBy: string;
+  paid: boolean;
+  status: string;
 }
 
 export interface INavLink {
   text: string;
   url: string;
-}
-
-export interface IUser {
-  uid: string;
-  email: string | null;
 }
 
 export interface ICartItem {
