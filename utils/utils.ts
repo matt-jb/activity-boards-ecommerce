@@ -58,4 +58,4 @@ export const validate = {
     .length(9, "Numer telefonu jest zbyt długi."),
 };
 
-export const PRODUCTS_PER_PAGE = 1;
+export const PRODUCTS_PER_PAGE = 4;

@@ -1,5 +1,5 @@
-import { IPaginateControls, IProduct } from "../../../utils/types";
-import { Button, CurrMarker, Wrapper } from "./Pagination.styles";
+import { IPaginateControls } from "../../../utils/types";
+import { Button, Wrapper } from "./Pagination.styles";
 import {
   BiChevronsLeft,
   BiChevronLeft,
@@ -13,7 +13,7 @@ interface Props {
 
 export default function Pagination({ controls }: Props) {
   const {
-    actualPageIdx,
+    actualPageIdx: i,
     lastPageIdx,
     goToFirstPage,
     goToPrevPage,
@@ -26,56 +26,60 @@ export default function Pagination({ controls }: Props) {
     <Wrapper>
       <Button
         onClick={() => goToFirstPage()}
-        disabled={actualPageIdx === 0}
-        variant="standard"
+        disabled={i === 0}
+        variant="arrow"
+        icon
       >
         <BiChevronsLeft />
       </Button>
       <Button
         onClick={() => goToPrevPage()}
-        disabled={actualPageIdx === 0}
-        variant="standard"
+        disabled={i === 0}
+        variant="arrow"
+        icon
       >
         <BiChevronLeft />
       </Button>
 
-      {actualPageIdx > 1 && (
-        <Button onClick={() => goToPage(actualPageIdx - 2)} variant="standard">
-          {actualPageIdx - 1}
+      {i > 1 && (
+        <Button onClick={() => goToPage(i - 2)} variant="standard">
+          {i - 1}
         </Button>
       )}
-      {actualPageIdx > 0 && (
-        <Button onClick={() => goToPage(actualPageIdx - 1)} variant="standard">
-          {actualPageIdx}
+      {i > 0 && (
+        <Button onClick={() => goToPage(i - 1)} variant="standard">
+          {i}
         </Button>
       )}
 
-      <Button onClick={() => goToPage(actualPageIdx)} variant="current">
-        {actualPageIdx + 1}
+      <Button onClick={() => goToPage(i)} variant="current">
+        {i + 1}
       </Button>
 
-      {lastPageIdx !== actualPageIdx && (
-        <Button onClick={() => goToPage(actualPageIdx + 1)} variant="standard">
-          {actualPageIdx + 2}
+      {lastPageIdx !== i && (
+        <Button onClick={() => goToPage(i + 1)} variant="standard">
+          {i + 2}
         </Button>
       )}
-      {lastPageIdx - 1 > actualPageIdx && (
-        <Button onClick={() => goToPage(actualPageIdx + 2)} variant="standard">
-          {actualPageIdx + 3}
+      {lastPageIdx - 1 > i && (
+        <Button onClick={() => goToPage(i + 2)} variant="standard">
+          {i + 3}
         </Button>
       )}
 
       <Button
         onClick={() => goToNextPage()}
-        disabled={actualPageIdx === lastPageIdx}
-        variant="standard"
+        disabled={i === lastPageIdx}
+        variant="arrow"
+        icon
       >
         <BiChevronRight />
       </Button>
       <Button
         onClick={() => goToLastPage()}
-        disabled={actualPageIdx === lastPageIdx}
-        variant="standard"
+        disabled={i === lastPageIdx}
+        variant="arrow"
+        icon
       >
         <BiChevronsRight />
       </Button>

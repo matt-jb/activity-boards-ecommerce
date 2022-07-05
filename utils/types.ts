@@ -82,4 +82,8 @@ export interface IPaginateControls {
   goToLastPage: () => void;
 }
 
-export type PaginationButtonColors = "standard" | "current" | "disabled";
+export type PaginationButtonColors =
+  | "standard"
+  | "current"
+  | "disabled"
+  | "arrow";
