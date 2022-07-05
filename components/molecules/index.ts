@@ -12,6 +12,7 @@ import CartItemControls from "./CartItemControls/CartItemControls";
 import UserDetailsFields from "./UserDetailsFields/UserDetailsFields";
 import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 import UserDeletion from "./UserDeletion/UserDeletion";
+import Pagination from "./Pagination/Pagination";
 
 export {
   InfoBar,
@@ -28,4 +29,5 @@ export {
   UserDetailsFields,
   CheckoutSuccess,
   UserDeletion,
+  Pagination,
 };

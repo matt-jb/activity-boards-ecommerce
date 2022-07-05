@@ -66,3 +66,20 @@ export type ActionsType =
     }
   | { type: "remove-cart-item"; payload: { cartProductIndex: number } }
   | { type: "clear-cart-items" };
+
+export type usePaginationType = (data: Array<IProduct>) => {
+  entries: Array<IProduct>;
+  controls: IPaginateControls;
+};
+
+export interface IPaginateControls {
+  lastPageIdx: number;
+  actualPageIdx: number;
+  goToFirstPage: () => void;
+  goToPrevPage: () => void;
+  goToPage: (page: number) => void;
+  goToNextPage: () => void;
+  goToLastPage: () => void;
+}
+
+export type PaginationButtonColors = "standard" | "current" | "disabled";
