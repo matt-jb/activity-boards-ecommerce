@@ -42,12 +42,12 @@ export default function Pagination({ controls }: Props) {
       </Button>
 
       {i > 1 && (
-        <Button onClick={() => goToPage(i - 2)} variant="standard">
+        <Button onClick={() => goToPage(i - 2)} variant="standard" bp45>
           {i - 1}
         </Button>
       )}
       {i > 0 && (
-        <Button onClick={() => goToPage(i - 1)} variant="standard">
+        <Button onClick={() => goToPage(i - 1)} variant="standard" bp35>
           {i}
         </Button>
       )}
@@ -57,12 +57,12 @@ export default function Pagination({ controls }: Props) {
       </Button>
 
       {lastPageIdx !== i && (
-        <Button onClick={() => goToPage(i + 1)} variant="standard">
+        <Button onClick={() => goToPage(i + 1)} variant="standard" bp35>
           {i + 2}
         </Button>
       )}
       {lastPageIdx - 1 > i && (
-        <Button onClick={() => goToPage(i + 2)} variant="standard">
+        <Button onClick={() => goToPage(i + 2)} variant="standard" bp45>
           {i + 3}
         </Button>
       )}

@@ -12,6 +12,10 @@ export const StyledUserSection = styled.div`
     fill: var(--pink);
     transition: all 0.15s;
   }
+
+  @media only screen and (max-width: 900px) {
+    justify-content: center;
+  }
 `;
 
 export const IconContainer = styled.div`

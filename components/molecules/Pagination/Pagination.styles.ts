@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { boolean } from "yup";
 import { PaginationButtonColors } from "../../../utils/types";
 
 const buttonColors = {
@@ -11,6 +12,8 @@ const buttonColors = {
 export const Button = styled.button<{
   variant: PaginationButtonColors;
   icon?: boolean;
+  bp45?: boolean;
+  bp35?: boolean;
 }>`
   width: 4rem;
   height: 4rem;
@@ -33,6 +36,19 @@ export const Button = styled.button<{
 
   &:hover {
     background-color: var(--intensivePink);
+  }
+
+  &:active {
+    background-color: var(--darkBlue);
+    color: var(--white);
+  }
+
+  @media only screen and (max-width: 450px) {
+    display: ${(props) => (props.bp45 ? `none` : `block`)};
+  }
+
+  @media only screen and (max-width: 350px) {
+    display: ${(props) => (props.bp35 || props.bp45 ? `none` : `block`)};
   }
 `;
 
