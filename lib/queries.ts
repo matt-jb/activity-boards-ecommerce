@@ -5,7 +5,9 @@ import {
   DocumentData,
   doc,
   getDoc,
+  where,
 } from "firebase/firestore";
+import { IProduct } from "../utils/types";
 import { db } from "./clientAuth";
 
 export async function getAllProductsQuery() {
@@ -29,4 +31,21 @@ export async function getSingleProductQuery(id: string) {
   const product = docSnap.data();
 
   return JSON.parse(JSON.stringify(product));
+}
+
+export async function getCategoryQuery(category: string) {
+  const q = query(
+    collection(db, "activity-boards"),
+    where("category", "==", category)
+  );
+  const querySnapshot = await getDocs(q);
+
+  const arr: IProduct[] = [];
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    arr.push(data as IProduct);
+  });
+
+  const retreivedProducts = JSON.parse(JSON.stringify(arr));
+  return retreivedProducts;
 }

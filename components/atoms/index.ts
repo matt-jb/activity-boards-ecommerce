@@ -13,6 +13,7 @@ import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Spinner from "./Spinner/Spinner";
 import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
+import Category from "./Category/Category";
 
 export {
   Alert,
@@ -30,4 +31,5 @@ export {
   ProtectedRoute,
   NoItemsInCart,
   CheckoutForm,
+  Category,
 };

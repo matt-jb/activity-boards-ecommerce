@@ -97,7 +97,7 @@ export const ImageContainer = styled.section`
 
 export const StyledProductCard = styled.div`
   width: 100%;
-  height: 27rem;
+  min-height: 27rem;
   padding-right: 1rem;
   border: 2px solid #e6e6e6;
   border-radius: 3rem;
@@ -111,7 +111,17 @@ export const StyledProductCard = styled.div`
     border: 2px solid var(--pink);
   }
 
-  @media only screen and (max-width: 450px) {
-    height: 30rem;
+  @media only screen and (max-width: 500px) {
+    min-height: 35rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 `;

@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const authRequired = ["/account", "/edit"];
+const authRequired = ["/account"];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
