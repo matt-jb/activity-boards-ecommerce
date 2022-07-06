@@ -1,5 +1,10 @@
 import { Block } from "./Category.styles";
 
-export default function Category() {
-  return <Block>Kategoria</Block>;
+interface Props {
+  name: string;
+  onClick: () => void;
+}
+
+export default function Category({ name, onClick }: Props) {
+  return <Block onClick={onClick}>{name}</Block>;
 }

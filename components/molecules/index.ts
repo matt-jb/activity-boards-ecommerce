@@ -13,6 +13,7 @@ import UserDetailsFields from "./UserDetailsFields/UserDetailsFields";
 import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 import UserDeletion from "./UserDeletion/UserDeletion";
 import Pagination from "./Pagination/Pagination";
+import Categories from "./Categories/Categories";
 
 export {
   InfoBar,
@@ -30,4 +31,5 @@ export {
   CheckoutSuccess,
   UserDeletion,
   Pagination,
+  Categories,
 };

@@ -59,3 +59,11 @@ export const validate = {
 };
 
 export const PRODUCTS_PER_PAGE = 4;
+
+export type SizesType = "small" | "medium" | "large";
+
+export const sizes = {
+  small: `Małe`,
+  medium: `Średnie`,
+  large: `Duże`,
+};

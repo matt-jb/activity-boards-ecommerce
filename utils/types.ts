@@ -9,6 +9,7 @@ export interface IProduct {
   images: Array<string | StaticImageData>;
   width: number;
   height: number;
+  category: string;
 }
 
 export interface IUserFormData {
