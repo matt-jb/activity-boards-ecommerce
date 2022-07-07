@@ -23,7 +23,7 @@ export default function UserNav() {
             <IconName>Szukaj</IconName>
           </IconContainer>
         </Link>
-        <Link href="/favorite" passHref>
+        <Link href="/wish-list" passHref>
           <IconContainer>
             <BiHeart className="icon" />
             <IconName>Ulubione</IconName>

@@ -10,7 +10,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { IOrder, IUserFormData } from "../utils/types";
+import { IOrder, IProduct, IUserFormData } from "../utils/types";
 import { db } from "./clientAuth";
 
 export const defaultUserData = {
@@ -74,22 +74,8 @@ export async function saveUserDetails(uid: string, data: IUserFormData) {
   return docRef;
 }
 
-export async function addProductToWishList(uid: string, pid: string) {
-  const userRef = doc(db, "users", uid);
-  await updateDoc(userRef, {
-    wishList: arrayUnion(pid),
-  }).catch((err) => console.log(err));
-}
-
-export async function removeProductFromWishList(uid: string, pid: string) {
-  const userRef = doc(db, "users", uid);
-  await updateDoc(userRef, {
-    wishList: arrayRemove(pid),
-  }).catch((err) => console.log(err));
-}
-
-export async function removeAllProductsFromWishList(uid: string) {
-  setDoc(doc(db, "users", uid), { wishList: [] }, { merge: true }).catch(
+export async function modifyWishList(uid: string, list: Array<string>) {
+  setDoc(doc(db, "users", uid), { wishList: list }, { merge: true }).catch(
     (err) => console.log(err)
   );
 }
