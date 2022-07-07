@@ -33,8 +33,8 @@ export default function UserDetailsForm() {
       zipCode,
       city,
     }),
-    onSubmit: async (values, { setSubmitting }) => {
-      await saveUserDetails(user!.uid, values)
+    onSubmit: (values, { setSubmitting }) => {
+      saveUserDetails(user!.uid, values)
         .then(() => {
           window.scrollTo(0, 0);
           addAlert("success", "Poprawnie zapisano dane użytkownika.");

@@ -4,7 +4,7 @@ import { ProductCard } from "../components/organisms";
 import { getAllProductsQuery } from "../lib/queries";
 import { IProduct } from "../utils/types";
 import { Pagination } from "../components/molecules";
-import { usePagination } from "../components/molecules/Pagination/usePagination";
+import { usePagination } from "../hooks/usePagination";
 
 interface Props {
   products: Array<IProduct>;

@@ -88,3 +88,7 @@ export type PaginationButtonColors =
   | "current"
   | "disabled"
   | "arrow";
+
+export type VisibleAccountViews = "purchases" | "data" | "deletion" | null;
+
+export type SizesType = "small" | "medium" | "large";

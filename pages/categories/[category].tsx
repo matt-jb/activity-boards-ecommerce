@@ -2,12 +2,12 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ProductsWrapper, Spinner } from "../../components/atoms";
 import { Pagination } from "../../components/molecules";
-import { usePagination } from "../../components/molecules/Pagination/usePagination";
+import { usePagination } from "../../hooks/usePagination";
 import { ProductCard } from "../../components/organisms";
 import { Layout } from "../../components/templates";
 import { getCategoryQuery } from "../../lib/queries";
-import { IProduct } from "../../utils/types";
-import { sizes, SizesType } from "../../utils/utils";
+import { IProduct, SizesType } from "../../utils/types";
+import { sizes } from "../../utils/utils";
 
 interface Props {
   category: Array<IProduct>;

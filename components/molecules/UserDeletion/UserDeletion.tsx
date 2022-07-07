@@ -11,8 +11,8 @@ export default function UserDeletion() {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  async function handleDelete() {
-    await deleteUser(user!)
+  function handleDelete() {
+    deleteUser(user!)
       .then(() => {
         router.push("/");
       })

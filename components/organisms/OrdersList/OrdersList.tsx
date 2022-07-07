@@ -12,8 +12,8 @@ export default function OrdersList({ orders }: Props) {
 
   return (
     <OrdersWrapper>
-      {orders.map((order, i) => (
-        <SingleOrder key={i} order={order} />
+      {orders.map((order) => (
+        <SingleOrder key={order.id} order={order} />
       ))}
     </OrdersWrapper>
   );

@@ -58,10 +58,6 @@ export const validate = {
     .length(9, "Numer telefonu jest zbyt długi."),
 };
 
-export const PRODUCTS_PER_PAGE = 4;
-
-export type SizesType = "small" | "medium" | "large";
-
 export const sizes = {
   small: `Małe`,
   medium: `Średnie`,

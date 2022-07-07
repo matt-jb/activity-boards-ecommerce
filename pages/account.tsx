@@ -1,35 +1,42 @@
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import { RegularButton, Spinner } from "../components/atoms";
+import { useEffect, useState } from "react";
+import { RegularButton } from "../components/atoms";
 import { UserDeletion } from "../components/molecules";
 import { OrdersList, UserDetailsForm } from "../components/organisms";
 import { Layout } from "../components/templates";
 import { useAlert } from "../context/AlertContext";
 import { useAuth } from "../context/AuthContext";
 import { getUserOrders } from "../lib/userControls";
-import { IOrder } from "../utils/types";
+import { IOrder, VisibleAccountViews } from "../utils/types";
 
 export default function Account() {
   const { user, logout } = useAuth();
   const { addAlert } = useAlert();
   const router = useRouter();
-  const [showData, setShowData] = useState(false);
-  const [showOrders, setShowOrders] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
+  const [visibleView, setVisibleView] = useState<VisibleAccountViews>(null);
   const [orders, setOrders] = useState<IOrder[]>([]);
+
+  function handleView(view: VisibleAccountViews) {
+    visibleView === view ? setVisibleView(null) : setVisibleView(view);
+  }
 
   function signOut() {
     logout().then(() => {
       addAlert("success", "Jesteś wylogowany.");
-      router.push("/");
+      router.push("/").catch((err) => {
+        addAlert("warning", err);
+      });
     });
   }
 
-  // A może jednak ServerSideProps?
   useEffect(() => {
-    getUserOrders(user!.uid).then((orders) => {
-      setOrders(orders);
-    });
+    getUserOrders(user!.uid)
+      .then((orders) => {
+        setOrders(orders);
+      })
+      .catch((err) => {
+        addAlert("warning", err);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,21 +45,18 @@ export default function Account() {
       <RegularButton
         text="Twoje zakupy"
         blue
-        onClick={() => setShowOrders((prev) => !prev)}
+        onClick={() => handleView("purchases")}
       />
-      {showOrders && <OrdersList orders={orders} />}
+      {visibleView === "purchases" && <OrdersList orders={orders} />}
       <RegularButton
         text="Twoje dane"
         blue
-        onClick={() => setShowData((prev) => !prev)}
+        onClick={() => handleView("data")}
       />
-      {showData && <UserDetailsForm />}
+      {visibleView === "data" && <UserDetailsForm />}
       <RegularButton onClick={() => signOut()} text="Wyloguj" />
-      <RegularButton
-        text="Usuń konto"
-        onClick={() => setShowDelete((prev) => !prev)}
-      />
-      {showDelete && <UserDeletion />}
+      <RegularButton text="Usuń konto" onClick={() => handleView("deletion")} />
+      {visibleView === "deletion" && <UserDeletion />}
     </Layout>
   );
 }
