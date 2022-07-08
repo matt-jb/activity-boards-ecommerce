@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../lib/clientAuth";
-import { IUserFormData, UserType } from "../utils/types";
+import { IProduct, IUserFormData, UserType } from "../utils/types";
 import { Spinner } from "../components/atoms";
 import { getUserDetails, modifyWishList } from "../lib/userControls";
 
@@ -57,47 +57,35 @@ export const AuthContextProvider = ({ children }: Props) => {
       .catch((err) => console.log(err));
   }
 
-  async function addToWishList(pid: string) {
-    if (!user)
-      throw new Error(
-        `A user must be logged in when adding an item to the Wish List!`
-      );
+  async function handleWishListUpdate(list: Array<string>) {
+    if (!user) throw new Error(`No user logged in!`);
 
-    const { uid, wishList } = user;
-    if (wishList.includes(pid)) return;
-
-    const newWishList = [...wishList, pid];
     const newUserCtx = user;
-    newUserCtx.wishList = newWishList;
-    await modifyWishList(uid, newWishList);
-    setUser(newUserCtx);
+    newUserCtx.wishList = list;
+    await modifyWishList(user.uid, list);
+    setUser({ ...newUserCtx });
   }
 
-  async function removeFromWishList(pid: string) {
-    if (!user)
-      throw new Error(
-        `A user must be logged in when removing an item from the Wish List!`
-      );
+  function addToWishList(pid: string) {
+    if (!user) throw new Error(`No user logged in!`);
 
-    const { uid, wishList } = user;
-    if (!wishList.includes(pid)) return;
-
-    const newWishList = wishList.filter((product) => product !== pid);
-    const newUserCtx = user;
-    newUserCtx.wishList = newWishList;
-    await modifyWishList(uid, newWishList);
-    setUser(newUserCtx);
+    const i = user.wishList.findIndex((id) => id === pid);
+    if (i > -1) return;
+    const newWishList = [...user.wishList, pid];
+    handleWishListUpdate([...newWishList]);
   }
 
-  async function clearWishList() {
-    if (!user)
-      throw new Error(
-        `A user must be logged in when removing an item from the Wish List!`
-      );
-    await modifyWishList(user.uid, []);
-    const newUserCtx = user;
-    newUserCtx.wishList = [];
-    setUser(newUserCtx);
+  function removeFromWishList(pid: string) {
+    if (!user) throw new Error(`No user logged in!`);
+
+    const i = user.wishList.findIndex((id) => id === pid);
+    if (i === -1) return;
+    const newWishList = user.wishList.filter((id) => id !== pid);
+    handleWishListUpdate([...newWishList]);
+  }
+
+  function clearWishList() {
+    handleWishListUpdate([]);
   }
 
   return (

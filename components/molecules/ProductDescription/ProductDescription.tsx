@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../../../context/AuthContext";
 import { useCart } from "../../../context/CartContext";
 import { IProduct } from "../../../utils/types";
 import {
@@ -12,8 +13,9 @@ interface Props {
 }
 
 export default function ProductDescription({ product }: Props) {
-  const { name, price, description, width, height } = product;
+  const { name, price, description, width, height, id } = product;
   const { addProduct } = useCart();
+  const { addToWishList } = useAuth();
 
   return (
     <DescriptionSection>
@@ -33,7 +35,7 @@ export default function ProductDescription({ product }: Props) {
         <ActionButton onClick={() => addProduct(product)} cart>
           Dodaj do koszyka
         </ActionButton>
-        <ActionButton onClick={() => console.log(`Added to wish list!`)}>
+        <ActionButton onClick={() => addToWishList(id)}>
           Dodaj do listy życzeń
         </ActionButton>
       </ButtonsContainer>

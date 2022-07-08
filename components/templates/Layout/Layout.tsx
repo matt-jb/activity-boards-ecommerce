@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import { useAuth } from "../../../context/AuthContext";
 import { Alert } from "../../atoms";
 import { PageTitle } from "../../atoms";
 import { InfoBar } from "../../molecules";
@@ -15,8 +14,6 @@ interface Props {
 
 export default function Layout({ title, children }: Props) {
   const { alerts, discardAlert } = useAlert();
-  const { user } = useAuth();
-  console.log(user);
 
   return (
     <>

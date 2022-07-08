@@ -9,26 +9,26 @@ import {
 } from "./UserNav.styles";
 import { useCart } from "../../../context/CartContext";
 import { getItemsNumber } from "../../../utils/utils";
+import { useState } from "react";
+import { WishList } from "../../organisms";
 
 export default function UserNav() {
   const { user } = useAuth();
   const { state } = useCart();
+  const [wishList, setWishList] = useState(false);
 
   return (
     <>
+      {wishList && <WishList onClick={() => setWishList(false)} />}
       <StyledUserSection>
-        <Link href="/search" passHref>
-          <IconContainer>
-            <BiSearchAlt2 className="icon" />
-            <IconName>Szukaj</IconName>
-          </IconContainer>
-        </Link>
-        <Link href="/wish-list" passHref>
-          <IconContainer>
-            <BiHeart className="icon" />
-            <IconName>Ulubione</IconName>
-          </IconContainer>
-        </Link>
+        <IconContainer>
+          <BiSearchAlt2 className="icon" />
+          <IconName>Szukaj</IconName>
+        </IconContainer>
+        <IconContainer onClick={() => setWishList(true)}>
+          <BiHeart className="icon" />
+          <IconName>Lista życzeń</IconName>
+        </IconContainer>
         <Link href={user ? `/account` : `/login`} passHref>
           <IconContainer>
             <BiUser className="icon" />
