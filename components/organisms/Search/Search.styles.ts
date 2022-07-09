@@ -38,7 +38,6 @@ export const SearchBox = styled.input`
     margin: 2rem auto;
     flex-direction: column;
     gap: 0.5rem;
-    height: 18rem;
     padding: 1rem 1rem;
   }
 `;
