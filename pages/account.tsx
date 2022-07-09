@@ -6,6 +6,7 @@ import { OrdersList, UserDetailsForm } from "../components/organisms";
 import { Layout } from "../components/templates";
 import { useAlert } from "../context/AlertContext";
 import { useAuth } from "../context/AuthContext";
+import { useProducts } from "../context/ProductsContext";
 import { getUserOrders } from "../lib/userControls";
 import { IOrder, VisibleAccountViews } from "../utils/types";
 

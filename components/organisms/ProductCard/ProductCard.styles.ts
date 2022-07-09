@@ -68,7 +68,7 @@ export const MoreButton = styled.button`
   width: 9rem;
   margin-right: 2rem;
   background-color: var(--lightBlue);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--pink);
@@ -78,7 +78,7 @@ export const MoreButton = styled.button`
 export const AddToCartButton = styled.button`
   width: 12rem;
   background-color: var(--pink);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   margin-right: 1rem;
 
   &:hover {
@@ -93,6 +93,29 @@ export const ImageContainer = styled.section`
   width: 50%;
   margin-right: 1rem;
   overflow: hidden;
+
+  & .heart {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    color: var(--darkGrey);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--intensivePink);
+    }
+
+    &:active {
+      color: var(--lightBlue);
+    }
+  }
+
+  & .onWishList {
+    color: var(--pink);
+  }
 `;
 
 export const StyledProductCard = styled.div`

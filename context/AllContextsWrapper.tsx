@@ -1,6 +1,7 @@
 import { AuthContextProvider } from "./AuthContext";
 import { AlertContextProvider } from "./AlertContext";
 import { CartContextProvider } from "./CartContext";
+import { ProductsContextProvider } from "./ProductsContext";
 
 interface Props {
   children: React.ReactNode;
@@ -8,10 +9,12 @@ interface Props {
 
 export default function AllContextsWrapper({ children }: Props) {
   return (
-    <CartContextProvider>
-      <AlertContextProvider>
-        <AuthContextProvider>{children}</AuthContextProvider>
-      </AlertContextProvider>
-    </CartContextProvider>
+    <ProductsContextProvider>
+      <CartContextProvider>
+        <AlertContextProvider>
+          <AuthContextProvider>{children}</AuthContextProvider>
+        </AlertContextProvider>
+      </CartContextProvider>
+    </ProductsContextProvider>
   );
 }

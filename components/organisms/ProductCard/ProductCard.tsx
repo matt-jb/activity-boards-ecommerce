@@ -15,9 +15,8 @@ import {
   StyledProductCard,
 } from "./ProductCard.styles";
 import { useAuth } from "../../../context/AuthContext";
-import { DeleteButton } from "../../atoms";
-import { EditButton } from "../../atoms";
 import { useCart } from "../../../context/CartContext";
+import { BsHeart } from "react-icons/bs";
 
 interface Props {
   product: IProduct;
@@ -26,18 +25,25 @@ interface Props {
 export default function ProductCard({ product }: Props) {
   const { id, name, slug, images, description, price } = product;
   const { addProduct } = useCart();
-  // const { user } = useAuth();
+  const { user, addToWishList, removeFromWishList } = useAuth();
 
   return (
     <StyledProductCard>
       <ImageContainer>
-        {/* {user?.uid === createdBy && (
-          <>
-            <EditButton />
-            <DeleteButton />
-          </>
-        )} */}
         <Image src={images[0]} alt={name} layout="fill" objectFit="cover" />
+        <BsHeart
+          className={user?.wishList.includes(id) ? "heart onWishList" : "heart"}
+          onClick={() => {
+            user?.wishList.includes(id)
+              ? removeFromWishList(id)
+              : addToWishList(id);
+          }}
+          title={
+            user?.wishList.includes(id)
+              ? "Usuń z Listy Życzeń"
+              : "Dodaj do Listy Życzeń"
+          }
+        />
       </ImageContainer>
       <NameTag>
         <Name>{name}</Name>

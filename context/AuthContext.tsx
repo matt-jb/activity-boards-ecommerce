@@ -1,14 +1,17 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../lib/clientAuth";
-import { IUserFormData, UserType } from "../utils/types";
+import { IProduct, IUserFormData, UserType } from "../utils/types";
 import { Spinner } from "../components/atoms";
-import { getUserDetails } from "../lib/userControls";
+import { getUserDetails, modifyWishList } from "../lib/userControls";
 
 interface IAuthContext {
   user: UserType | null;
   logout: () => Promise<void>;
   updateUserCtx: (details: IUserFormData) => void;
+  addToWishList: (pid: string) => void;
+  removeFromWishList: (pid: string) => void;
+  clearWishList: () => void;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -26,19 +29,7 @@ export const AuthContextProvider = ({ children }: Props) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoading(true);
-      if (user) {
-        getUserDetails(user.uid)
-          .then((details) => {
-            setUser({
-              uid: user.uid,
-              email: user.email,
-              ...details,
-            });
-          })
-          .catch((err) => console.log(err));
-      } else {
-        setUser(null);
-      }
+      user ? setUserData(user) : setUser(null);
       setLoading(false);
     });
 
@@ -54,8 +45,60 @@ export const AuthContextProvider = ({ children }: Props) => {
     setUser({ uid: user!.uid, email: user!.email, ...details });
   }
 
+  async function setUserData(user: User) {
+    getUserDetails(user.uid)
+      .then((details) => {
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          ...details,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  async function handleWishListUpdate(list: Array<string>) {
+    if (!user) throw new Error(`No user logged in!`);
+
+    const newUserCtx = user;
+    newUserCtx.wishList = list;
+    await modifyWishList(user.uid, list);
+    setUser({ ...newUserCtx });
+  }
+
+  function addToWishList(pid: string) {
+    if (!user) throw new Error(`No user logged in!`);
+
+    const i = user.wishList.findIndex((id) => id === pid);
+    if (i > -1) return;
+    const newWishList = [...user.wishList, pid];
+    handleWishListUpdate([...newWishList]);
+  }
+
+  function removeFromWishList(pid: string) {
+    if (!user) throw new Error(`No user logged in!`);
+
+    const i = user.wishList.findIndex((id) => id === pid);
+    if (i === -1) return;
+    const newWishList = user.wishList.filter((id) => id !== pid);
+    handleWishListUpdate([...newWishList]);
+  }
+
+  function clearWishList() {
+    handleWishListUpdate([]);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, logout, updateUserCtx }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        logout,
+        updateUserCtx,
+        addToWishList,
+        removeFromWishList,
+        clearWishList,
+      }}
+    >
       {loading ? <Spinner /> : children}
     </AuthContext.Provider>
   );

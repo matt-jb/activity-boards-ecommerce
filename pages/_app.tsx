@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const authRequired = ["/account"];
+const authRequired = ["/account", "/wish-list"];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

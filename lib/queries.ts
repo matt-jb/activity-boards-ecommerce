@@ -29,8 +29,10 @@ export async function getSingleProductQuery(id: string) {
   const docRef = doc(db, "activity-boards", id);
   const docSnap = await getDoc(docRef);
   const product = docSnap.data();
+  const res = JSON.parse(JSON.stringify(product));
+  res.id = id;
 
-  return JSON.parse(JSON.stringify(product));
+  return res;
 }
 
 export async function getCategoryQuery(category: string) {
