@@ -1,7 +1,9 @@
 import {
   Background,
+  backgroundVariants,
   IconContainer,
   List,
+  listVariants,
   NoProducts,
   ProductsWrapper,
   Title,
@@ -14,32 +16,11 @@ import { useProducts } from "../../../context/ProductsContext";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-const backgroundVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-  },
-};
-
-const listVariants = {
-  hidden: {
-    x: "100vw",
-  },
-  visible: {
-    x: 0,
-    transition: { type: "tween" },
-  },
-  exit: {
-    x: "100vw",
-  },
-};
-
-export default function WishList({ onClick }: { onClick: () => void }) {
+export default function WishList({
+  handleWishList,
+}: {
+  handleWishList: () => void;
+}) {
   const { user, removeFromWishList, clearWishList } = useAuth();
   const { products } = useProducts();
   const [productWishList, setProductWishList] = useState(generateProducts());
@@ -54,40 +35,38 @@ export default function WishList({ onClick }: { onClick: () => void }) {
   }, [user]);
 
   return (
-    <AnimatePresence>
-      <Background
-        onClick={onClick}
-        variants={backgroundVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <List onClick={(e) => e.stopPropagation()} variants={listVariants}>
-          <IconContainer>
-            <BiX onClick={onClick} className="close" />
-          </IconContainer>
-          <Title key="cccc">Twoja lista życzeń</Title>
-          <ProductsWrapper>
-            {productWishList.length > 0 ? (
-              <>
-                {productWishList.map((product) => (
-                  <WishListProduct
-                    product={product}
-                    key={product.id}
-                    onClick={() => removeFromWishList(product.id)}
-                  />
-                ))}
-                <RegularButton
-                  text="Wyczyść listę życzeń"
-                  onClick={() => clearWishList()}
+    <Background
+      onClick={() => handleWishList()}
+      variants={backgroundVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <List onClick={(e) => e.stopPropagation()} variants={listVariants}>
+        <IconContainer>
+          <BiX onClick={() => handleWishList()} className="close" />
+        </IconContainer>
+        <Title key="cccc">Twoja lista życzeń</Title>
+        <ProductsWrapper>
+          {productWishList.length > 0 ? (
+            <>
+              {productWishList.map((product) => (
+                <WishListProduct
+                  product={product}
+                  key={product.id}
+                  onClick={() => removeFromWishList(product.id)}
                 />
-              </>
-            ) : (
-              <NoProducts>Twoja lista życzeń jest na razie pusta!</NoProducts>
-            )}
-          </ProductsWrapper>
-        </List>
-      </Background>
-    </AnimatePresence>
+              ))}
+              <RegularButton
+                text="Wyczyść listę życzeń"
+                onClick={() => clearWishList()}
+              />
+            </>
+          ) : (
+            <NoProducts>Twoja lista życzeń jest na razie pusta!</NoProducts>
+          )}
+        </ProductsWrapper>
+      </List>
+    </Background>
   );
 }

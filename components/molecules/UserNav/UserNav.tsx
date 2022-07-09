@@ -11,15 +11,22 @@ import { useCart } from "../../../context/CartContext";
 import { getItemsNumber } from "../../../utils/utils";
 import { useState } from "react";
 import { WishList } from "../../organisms";
+import { AnimatePresence } from "framer-motion";
 
 export default function UserNav() {
   const { user } = useAuth();
   const { state } = useCart();
   const [wishList, setWishList] = useState(false);
 
+  function handleWishList() {
+    setWishList((prev) => !prev);
+  }
+
   return (
     <>
-      {wishList && <WishList onClick={() => setWishList(false)} />}
+      <AnimatePresence>
+        {wishList && <WishList handleWishList={handleWishList} />}
+      </AnimatePresence>
       <StyledUserSection>
         <IconContainer>
           <BiSearchAlt2 className="icon" />

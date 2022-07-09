@@ -76,3 +76,28 @@ export const ProductsWrapper = styled.section`
 export const NoProducts = styled.p`
   font-size: 2rem;
 `;
+
+export const backgroundVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+export const listVariants = {
+  hidden: {
+    x: "100vw",
+  },
+  visible: {
+    x: 0,
+    transition: { type: "tween" },
+  },
+  exit: {
+    x: "100vw",
+  },
+};

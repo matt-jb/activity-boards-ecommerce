@@ -39,15 +39,15 @@ export default function WishListProduct({ product, onClick }: Props) {
         </Link>
       </NameContainer>
       <IconsContainer>
-        <BsCartPlus
-          className="icon"
-          onClick={() => addProduct(product)}
-          title="Dodaj do koszyka"
-        />
         <IoTrashBinOutline
-          className="icon"
+          className="icon bin"
           onClick={() => onClick()}
           title="Usuń z listy życzeń"
+        />
+        <BsCartPlus
+          className="icon add"
+          onClick={() => addProduct(product)}
+          title="Dodaj do koszyka"
         />
       </IconsContainer>
     </ItemWrapper>

@@ -103,6 +103,7 @@ export const ImageContainer = styled.section`
     cursor: pointer;
     color: var(--darkGrey);
     transition: all 0.2s ease-in-out;
+    mix-blend-mode: multiply;
 
     &:hover {
       color: var(--intensivePink);

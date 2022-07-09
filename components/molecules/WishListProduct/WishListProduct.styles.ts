@@ -71,11 +71,11 @@ export const Name = styled.a`
 export const IconsContainer = styled.section`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 50%;
+  padding-left: 5%;
 
   & .icon {
-    width: 4rem;
-    height: 4rem;
     cursor: pointer;
     color: var(--lightBlue);
     transition: all 0.2s ease-in-out;
@@ -85,7 +85,20 @@ export const IconsContainer = styled.section`
     }
   }
 
+  & .bin {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding-top: 0.1rem;
+    color: var(--pink);
+  }
+
+  & .add {
+    width: 4rem;
+    height: 4rem;
+  }
+
   @media only screen and (max-width: 500px) {
     width: 90%;
+    padding-left: 0;
   }
 `;

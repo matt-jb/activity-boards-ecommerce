@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     line-height: 1.6;
     font-family: 'Poppins', serif;
+    overflow-x: hidden;
   }
 
   input, button, textarea, select {
