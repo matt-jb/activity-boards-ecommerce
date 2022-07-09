@@ -14,7 +14,7 @@ import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 import UserDeletion from "./UserDeletion/UserDeletion";
 import Pagination from "./Pagination/Pagination";
 import Categories from "./Categories/Categories";
-import WishListProduct from "./WishListProduct/WishListProduct";
+import DropdownProduct from "./DropdownProduct/DropdownProduct";
 
 export {
   InfoBar,
@@ -33,5 +33,5 @@ export {
   UserDeletion,
   Pagination,
   Categories,
-  WishListProduct,
+  DropdownProduct,
 };

@@ -63,3 +63,13 @@ export const sizes = {
   medium: `Średnie`,
   large: `Duże`,
 };
+
+export function filterSearchResults(
+  value: string,
+  products?: Array<IProduct>
+): Array<IProduct> {
+  if (!products) return [];
+  return products.filter(
+    (item) => item.name.toLowerCase().indexOf(value.toLocaleLowerCase()) > -1
+  );
+}

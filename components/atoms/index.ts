@@ -14,6 +14,7 @@ import Spinner from "./Spinner/Spinner";
 import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import Category from "./Category/Category";
+import DarkBackground from "./DarkBackground/DarkBackground";
 
 export {
   Alert,
@@ -32,4 +33,5 @@ export {
   NoItemsInCart,
   CheckoutForm,
   Category,
+  DarkBackground,
 };

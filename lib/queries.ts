@@ -45,6 +45,7 @@ export async function getCategoryQuery(category: string) {
   const arr: IProduct[] = [];
   querySnapshot.forEach((doc) => {
     const data = doc.data();
+    data.id = doc.id;
     arr.push(data as IProduct);
   });
 

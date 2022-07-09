@@ -10,29 +10,31 @@ import {
 import { useCart } from "../../../context/CartContext";
 import { getItemsNumber } from "../../../utils/utils";
 import { useState } from "react";
-import { WishList } from "../../organisms";
+import { Search, WishList } from "../../organisms";
 import { AnimatePresence } from "framer-motion";
+import { UserNavFeatures } from "../../../utils/types";
 
 export default function UserNav() {
   const { user } = useAuth();
   const { state } = useCart();
-  const [wishList, setWishList] = useState(false);
+  const [isVisible, setIsVisible] = useState<UserNavFeatures>(null);
 
-  function handleWishList() {
-    setWishList((prev) => !prev);
+  function handleVisible(type: UserNavFeatures) {
+    isVisible === type ? setIsVisible(null) : setIsVisible(type);
   }
 
   return (
     <>
       <AnimatePresence>
-        {wishList && <WishList handleWishList={handleWishList} />}
+        {isVisible === "wishList" && <WishList handleVisible={handleVisible} />}
+        {isVisible === "searchBar" && <Search handleVisible={handleVisible} />}
       </AnimatePresence>
       <StyledUserSection>
-        <IconContainer>
+        <IconContainer onClick={() => handleVisible("searchBar")}>
           <BiSearchAlt2 className="icon" />
           <IconName>Szukaj</IconName>
         </IconContainer>
-        <IconContainer onClick={() => setWishList(true)}>
+        <IconContainer onClick={() => handleVisible("wishList")}>
           <BiHeart className="icon" />
           <IconName>Lista życzeń</IconName>
         </IconContainer>

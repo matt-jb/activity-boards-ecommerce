@@ -7,6 +7,8 @@ import PurchaseDetailsForm from "./PurchaseDetailsForm/PurchaseDetailsForm";
 import UserDetailsForm from "./UserDetailsForm/UserDetailsForm";
 import OrdersList from "./OrdersList/OrdersList";
 import WishList from "./WishList/WishList";
+import Search from "./Search/Search";
+import SideBar from "./SideBar/SideBar";
 
 export {
   Footer,
@@ -18,4 +20,6 @@ export {
   UserDetailsForm,
   OrdersList,
   WishList,
+  Search,
+  SideBar,
 };

@@ -8,19 +8,18 @@ import {
   Name,
   NameContainer,
   ThumbnailContainer,
-} from "./WishListProduct.styles";
+} from "./DropdownProduct.styles";
 import { BsCartPlus } from "react-icons/bs";
 import { IoTrashBinOutline } from "react-icons/io5";
-import { useAuth } from "../../../context/AuthContext";
 
 interface Props {
   product: IProduct;
-  onClick: () => void;
+  variant: "search" | "wishList";
+  onClick?: () => void;
 }
 
-export default function WishListProduct({ product, onClick }: Props) {
+export default function DropdownProduct({ product, variant, onClick }: Props) {
   const { addProduct } = useCart();
-  const { removeFromWishList } = useAuth();
   const thumbnail = product.images[0];
 
   return (
@@ -39,11 +38,13 @@ export default function WishListProduct({ product, onClick }: Props) {
         </Link>
       </NameContainer>
       <IconsContainer>
-        <IoTrashBinOutline
-          className="icon bin"
-          onClick={() => onClick()}
-          title="Usuń z listy życzeń"
-        />
+        {variant === "wishList" && (
+          <IoTrashBinOutline
+            className="icon bin"
+            onClick={onClick}
+            title="Usuń z listy życzeń"
+          />
+        )}
         <BsCartPlus
           className="icon add"
           onClick={() => addProduct(product)}

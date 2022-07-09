@@ -93,3 +93,5 @@ export type PaginationButtonColors =
 export type VisibleAccountViews = "purchases" | "data" | "deletion" | null;
 
 export type SizesType = "small" | "medium" | "large";
+
+export type UserNavFeatures = "wishList" | "searchBar" | null;
