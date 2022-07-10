@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useCart } from "../../../context/CartContext";
@@ -15,7 +16,8 @@ interface Props {
 export default function ProductDescription({ product }: Props) {
   const { name, price, description, width, height, id } = product;
   const { addProduct } = useCart();
-  const { addToWishList } = useAuth();
+  const { user, addToWishList } = useAuth();
+  const router = useRouter();
 
   return (
     <DescriptionSection>
@@ -35,7 +37,11 @@ export default function ProductDescription({ product }: Props) {
         <ActionButton onClick={() => addProduct(product)} cart>
           Dodaj do koszyka
         </ActionButton>
-        <ActionButton onClick={() => addToWishList(id)}>
+        <ActionButton
+          onClick={() => {
+            user ? addToWishList(id) : router.push("/login");
+          }}
+        >
           Dodaj do listy życzeń
         </ActionButton>
       </ButtonsContainer>

@@ -17,17 +17,19 @@ import { UserNavFeatures } from "../../../utils/types";
 export default function UserNav() {
   const { user } = useAuth();
   const { state } = useCart();
-  const [isVisible, setIsVisible] = useState<UserNavFeatures>(null);
+  const [visibleTab, setVisibleTab] = useState<UserNavFeatures>(null);
 
   function handleVisible(type: UserNavFeatures) {
-    isVisible === type ? setIsVisible(null) : setIsVisible(type);
+    setVisibleTab((prev) => (prev === type ? null : type));
   }
 
   return (
     <>
       <AnimatePresence>
-        {isVisible === "wishList" && <WishList handleVisible={handleVisible} />}
-        {isVisible === "searchBar" && <Search handleVisible={handleVisible} />}
+        {visibleTab === "wishList" && (
+          <WishList handleVisible={handleVisible} />
+        )}
+        {visibleTab === "searchBar" && <Search handleVisible={handleVisible} />}
       </AnimatePresence>
       <StyledUserSection>
         <IconContainer onClick={() => handleVisible("searchBar")}>

@@ -17,9 +17,9 @@ export default function Search({ handleVisible }: Props) {
 
   useEffect(() => {
     if (value.length > 2) {
-      const filteresProducts = filterSearchResults(value, products);
+      const filteredProducts = filterSearchResults(value, products);
       setTimeout(() => {
-        setSearchResults([...filteresProducts]);
+        setSearchResults([...filteredProducts]);
       }, 200);
       return;
     }
@@ -35,7 +35,7 @@ export default function Search({ handleVisible }: Props) {
       <SearchContainer>
         <SearchBox
           type="text"
-          placeholder={"Szukaj!"}
+          placeholder="Szukaj!"
           value={value}
           onChange={(e) => {
             setValue(e.target.value);

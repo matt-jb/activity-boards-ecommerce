@@ -60,10 +60,11 @@ export const AuthContextProvider = ({ children }: Props) => {
   async function handleWishListUpdate(list: Array<string>) {
     if (!user) throw new Error(`No user logged in!`);
 
-    const newUserCtx = user;
-    newUserCtx.wishList = list;
     await modifyWishList(user.uid, list);
-    setUser({ ...newUserCtx });
+    setUser((prev) => {
+      if (prev === null) return prev;
+      return { ...prev, wishList: list };
+    });
   }
 
   function addToWishList(pid: string) {

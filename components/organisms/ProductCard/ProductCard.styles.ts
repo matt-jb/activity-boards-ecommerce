@@ -10,6 +10,10 @@ export const Name = styled.h2`
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
+
+  @media only screen and (max-width: 500px) {
+    text-align: center;
+  }
 `;
 
 export const Description = styled.p`
@@ -105,6 +109,10 @@ export const ImageContainer = styled.section`
     transition: all 0.2s ease-in-out;
     mix-blend-mode: multiply;
 
+    @media only screen and (max-width: 500px) {
+      left: -5rem;
+    }
+
     &:hover {
       color: var(--intensivePink);
     }
@@ -116,6 +124,10 @@ export const ImageContainer = styled.section`
 
   & .onWishList {
     color: var(--pink);
+  }
+
+  @media only screen and (max-width: 500px) {
+    overflow: visible;
   }
 `;
 

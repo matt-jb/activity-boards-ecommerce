@@ -17,12 +17,14 @@ import {
 import { useAuth } from "../../../context/AuthContext";
 import { useCart } from "../../../context/CartContext";
 import { BsHeart } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 interface Props {
   product: IProduct;
 }
 
 export default function ProductCard({ product }: Props) {
+  const router = useRouter();
   const { id, name, slug, images, description, price } = product;
   const { addProduct } = useCart();
   const { user, addToWishList, removeFromWishList } = useAuth();
@@ -34,7 +36,9 @@ export default function ProductCard({ product }: Props) {
         <BsHeart
           className={user?.wishList.includes(id) ? "heart onWishList" : "heart"}
           onClick={() => {
-            user?.wishList.includes(id)
+            !user
+              ? router.push("/login")
+              : user.wishList.includes(id)
               ? removeFromWishList(id)
               : addToWishList(id);
           }}
