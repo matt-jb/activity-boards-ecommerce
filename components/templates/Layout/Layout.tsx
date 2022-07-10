@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { useAlert } from "../../../context/AlertContext";
@@ -5,7 +6,11 @@ import { Alert } from "../../atoms";
 import { PageTitle } from "../../atoms";
 import { InfoBar } from "../../molecules";
 import { Footer, HeaderMenu } from "../../organisms";
-import { StyledWrapper, WidthContainer } from "./Layout.styles";
+import {
+  AlertsContainer,
+  StyledWrapper,
+  WidthContainer,
+} from "./Layout.styles";
 
 interface Props {
   title: string;
@@ -25,13 +30,21 @@ export default function Layout({ title, children }: Props) {
         <InfoBar />
         <HeaderMenu />
         <PageTitle title={title} />
-        <WidthContainer>
-          {alerts.map((alert) => (
-            <Alert key={alert.id} alert={alert} discardAlert={discardAlert} />
-          ))}
-          {children}
-        </WidthContainer>
+        <WidthContainer>{children}</WidthContainer>
         <Footer />
+        {alerts && (
+          <AlertsContainer>
+            <AnimatePresence>
+              {alerts.map((alert) => (
+                <Alert
+                  key={alert.id}
+                  alert={alert}
+                  discardAlert={discardAlert}
+                />
+              ))}
+            </AnimatePresence>
+          </AlertsContainer>
+        )}
       </StyledWrapper>
     </>
   );

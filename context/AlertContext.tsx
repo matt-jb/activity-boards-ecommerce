@@ -20,12 +20,13 @@ export function AlertContextProvider({ children }: Props) {
   const [alerts, setAlerts] = useState<IAlert[]>([]);
 
   function addAlert(type: AlertTypes, message: string) {
-    const newAlert = {
-      id: uuidv4(),
-      message,
-      type,
-    };
+    const id = uuidv4();
+    const newAlert = { id, message, type };
     setAlerts((prev) => [...prev, newAlert]);
+
+    setTimeout(() => {
+      discardAlert(id);
+    }, 7000);
   }
 
   function discardAlert(id: string) {

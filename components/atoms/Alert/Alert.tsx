@@ -1,5 +1,11 @@
+import { BiX } from "react-icons/bi";
 import { IAlert } from "../../../utils/types";
-import { colors, StyledAlert, StyledEx } from "./Alert.styles";
+import {
+  alertsVariants,
+  CloseContainer,
+  colors,
+  StyledAlert,
+} from "./Alert.styles";
 
 interface Props {
   alert: IAlert;
@@ -10,9 +16,18 @@ export default function Alert({ alert, discardAlert }: Props) {
   const { id, type, message } = alert;
 
   return (
-    <StyledAlert key={id} style={{ backgroundColor: `${colors[type]}` }}>
+    <StyledAlert
+      key={id}
+      variants={alertsVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      type={type}
+    >
       {message}
-      <StyledEx onClick={() => discardAlert(id)}>x</StyledEx>
+      <CloseContainer>
+        <BiX onClick={() => discardAlert(id)} className="icon" />
+      </CloseContainer>
     </StyledAlert>
   );
 }

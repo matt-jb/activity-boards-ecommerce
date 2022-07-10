@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { useAlert } from "../../../context/AlertContext";
 import { auth } from "../../../lib/clientAuth";
 import { validate } from "../../../utils/utils";
-import { FormInput, RegularButton } from "../../atoms";
+import { FormInput } from "../../atoms";
 import {
   Button,
   OtherOptions,
