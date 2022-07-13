@@ -50,4 +50,11 @@ describe(`filterSearchResults`, () => {
   it(`Returns an empty array if no products are provided`, () => {
     expect(filterSearchResults("tab")).toStrictEqual([]);
   });
+
+  it(`Correctly finds queried products`, () => {
+    const productsArr = [cartMock[0].item, cartMock[1].item];
+    expect(filterSearchResults("abcd", productsArr)).toHaveLength(0);
+    expect(filterSearchResults("druga", productsArr)).toHaveLength(1);
+    expect(filterSearchResults("tab", productsArr)).toHaveLength(2);
+  });
 });

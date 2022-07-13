@@ -10,7 +10,7 @@ import { FooterLink } from "../../atoms";
 
 export default function Footer() {
   return (
-    <StyledWrapper>
+    <StyledWrapper data-testid="footer">
       <StyledFooter>
         <StyledDescription>
           <FooterColumnTitle className="footerColumnTitle">

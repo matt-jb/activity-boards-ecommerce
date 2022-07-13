@@ -5,7 +5,7 @@ import { links } from "./navLinks";
 export default function MainNavigation() {
   return (
     <nav>
-      <StyledUl>
+      <StyledUl data-testid="main-nav">
         {links.map((link) => (
           <NavLink key={link.text} text={link.text} url={link.url} />
         ))}

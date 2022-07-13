@@ -23,7 +23,7 @@ export default function DropdownProduct({ product, variant, onClick }: Props) {
   const thumbnail = product.images[0];
 
   return (
-    <ItemWrapper>
+    <ItemWrapper data-testid="dropdown-product">
       <ThumbnailContainer>
         <Image
           src={thumbnail}

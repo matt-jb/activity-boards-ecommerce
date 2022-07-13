@@ -30,7 +30,7 @@ export default function ProductCard({ product }: Props) {
   const { user, addToWishList, removeFromWishList } = useAuth();
 
   return (
-    <StyledProductCard>
+    <StyledProductCard data-testid="product-card">
       <ImageContainer>
         <Image src={images[0]} alt={name} layout="fill" objectFit="cover" />
         <BsHeart
@@ -55,7 +55,7 @@ export default function ProductCard({ product }: Props) {
       <Description>
         {getShortDescription(description)}
         <Link href={`/${id}/${slug}`} passHref>
-          <CtaMore>Więcej &#10142;</CtaMore>
+          <CtaMore data-testid="product-card-cta-more">Więcej &#10142;</CtaMore>
         </Link>
       </Description>
       <Price>
