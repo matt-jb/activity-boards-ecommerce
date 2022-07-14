@@ -65,7 +65,10 @@ export default function ProductCard({ product }: Props) {
         <Link href={`/${id}/${slug}`} passHref>
           <MoreButton>Więcej</MoreButton>
         </Link>
-        <AddToCartButton onClick={() => addProduct(product)}>
+        <AddToCartButton
+          onClick={() => addProduct(product)}
+          data-testid="product-card-btn-add-to-cart"
+        >
           Do koszyka
         </AddToCartButton>
       </CtaWrapper>

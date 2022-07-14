@@ -12,6 +12,8 @@ const cypressConfig = defineConfig({
       });
       // e2e testing node events setup code
     },
+    defaultCommandTimeout: 8000,
+    chromeWebSecurity: false,
   },
 });
 
