@@ -1,9 +1,18 @@
+import admin from "firebase-admin";
 import { defineConfig } from "cypress";
+import { plugin as cypressFirebasePlugin } from "cypress-firebase";
 
-export default defineConfig({
+const cypressConfig = defineConfig({
   e2e: {
+    baseUrl: "http://localhost:3000",
+    supportFile: "cypress/support/e2e.ts",
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      cypressFirebasePlugin(on, config, admin, {
+        projectId: "kacik-aktywnosci",
+      });
+      // e2e testing node events setup code
     },
   },
 });
+
+export default cypressConfig;
