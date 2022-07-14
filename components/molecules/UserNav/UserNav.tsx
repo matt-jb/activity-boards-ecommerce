@@ -32,7 +32,10 @@ export default function UserNav() {
         {visibleTab === "searchBar" && <Search handleVisible={handleVisible} />}
       </AnimatePresence>
       <StyledUserSection data-testid="user-nav">
-        <IconContainer onClick={() => handleVisible("searchBar")}>
+        <IconContainer
+          onClick={() => handleVisible("searchBar")}
+          data-testid="search-icon"
+        >
           <BiSearchAlt2 className="icon" />
           <IconName>Szukaj</IconName>
         </IconContainer>

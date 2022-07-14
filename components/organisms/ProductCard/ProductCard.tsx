@@ -47,6 +47,7 @@ export default function ProductCard({ product }: Props) {
               ? "Usuń z Listy Życzeń"
               : "Dodaj do Listy Życzeń"
           }
+          data-testid="heart-wish-list-icon"
         />
       </ImageContainer>
       <NameTag>

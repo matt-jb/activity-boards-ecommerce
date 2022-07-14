@@ -1,4 +1,4 @@
-describe("Product details page - not logged in", () => {
+describe("Product details page", () => {
   before(() => {
     cy.visit("http://localhost:3000/");
     cy.get("[data-testid=product-card-cta-more]").first().click();
@@ -23,27 +23,8 @@ describe("Product details page - not logged in", () => {
   });
 
   it("Navitages to /login when wanting to add to Wish List", () => {
+    // More Wish List testing in ./wish_list.cy.ts
     cy.contains("Dodaj do listy życzeń").click();
     cy.url().should("include", "/login");
-  });
-});
-
-describe("Product details page - logged in", () => {
-  before(() => {
-    cy.visit("http://localhost:3000/login");
-    cy.contains("Zaloguj się przez Email").click();
-    cy.get("input#email").type("test@example.com");
-    cy.get("input#password").type("TestTest123");
-    cy.get("[data-testid=login-submit-btn]").click();
-    cy.wait(2000);
-  });
-
-  it("Adds products to Wish List", () => {
-    cy.get("[data-testid=product-card-cta-more]").first().click();
-    cy.contains("Dodaj do listy życzeń").click();
-    cy.get("[data-testid=wish-list-toggler]").click();
-    cy.get("[data-testid=dropdown-product]")
-      .should("exist")
-      .should("be.visible");
   });
 });

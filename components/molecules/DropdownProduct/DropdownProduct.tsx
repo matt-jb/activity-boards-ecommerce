@@ -43,12 +43,14 @@ export default function DropdownProduct({ product, variant, onClick }: Props) {
             className="icon bin"
             onClick={onClick}
             title="Usuń z listy życzeń"
+            data-testid="wish-list-bin"
           />
         )}
         <BsCartPlus
           className="icon add"
           onClick={() => addProduct(product)}
           title="Dodaj do koszyka"
+          data-testid="wish-list-add-to-cart"
         />
       </IconsContainer>
     </ItemWrapper>

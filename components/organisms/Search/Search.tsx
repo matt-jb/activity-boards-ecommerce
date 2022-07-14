@@ -40,6 +40,7 @@ export default function Search({ handleVisible }: Props) {
           onChange={(e) => {
             setValue(e.target.value);
           }}
+          data-testid="search-input"
         />
         {searchResults.length > 0 &&
           searchResults.map((product) => (
