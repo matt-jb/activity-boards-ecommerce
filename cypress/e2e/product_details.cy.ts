@@ -1,5 +1,6 @@
 describe("Product details page", () => {
   before(() => {
+    indexedDB.deleteDatabase("firebaseLocalStorageDb");
     cy.visit("http://localhost:3000/");
     cy.get("[data-testid=product-card-cta-more]").first().click();
   });

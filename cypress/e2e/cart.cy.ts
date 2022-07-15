@@ -30,34 +30,3 @@ describe("Cart functionalities", () => {
     cy.contains("Twój koszyk jest pusty.");
   });
 });
-
-describe("User form and payments", () => {
-  beforeEach(() => {
-    cy.clearLocalStorage("activity-boards-cart");
-    cy.visit("http://localhost:3000/");
-  });
-
-  it.only("Works with valid data", () => {
-    cy.get("[data-testid=product-card-btn-add-to-cart]").first().click();
-    cy.get("[data-testid=cart-counter]").contains("1").click();
-    cy.contains("Do kasy").click();
-    cy.url().should("include", "/details");
-    cy.get("#fName").type("Test");
-    cy.get("#lName").type("Testowy");
-    cy.get("#phoneNumber").type("123123123");
-    cy.get("#addressL1").type("Mój adres 12/34");
-    cy.get("#city").type("Wrocław");
-    cy.get("#zipCode").type("01-234");
-    cy.get("#notes").type("To są testowe notatki");
-    cy.contains("Kup z obowiązkiem zapłaty").click();
-
-    // Payments
-    cy.wait(9001);
-    // cy.get("#card-element").within(() => {
-    //   cy.fillElementsInput("cardNumber", "4242424242424242");
-    //   cy.fillElementsInput("cardExpiry", "1025");
-    //   cy.fillElementsInput("cardCvc", "123");
-    //   cy.fillElementsInput("postalCode", "90210");
-    // });
-  });
-});

@@ -36,23 +36,35 @@
 //   }
 // }
 
-// Cypress.Commands.add("getStripeElement", (fieldName) => {
-//   if (Cypress.config("chromeWebSecurity")) {
-//     throw new Error(
-//       "To get stripe element `chromeWebSecurity` must be disabled"
-//     );
-//   }
+import "cypress-iframe";
 
-//   const selector = `input[data-elements-stable-field-name="${fieldName}"]`;
+Cypress.Commands.add("getIframeBody", () => {
+  // get the iframe > document > body
+  // and retry until the body element is not empty
+  return (
+    cy
+      .get("iframe")
+      .its("0.contentDocument.body")
+      .should("not.be.empty")
+      // wraps "body" DOM element to allow
+      // chaining more Cypress commands, like ".find(...)"
+      // https://on.cypress.io/wrap
+      .then(cy.wrap)
+  );
+});
 
-//   return cy
-//     .get("iframe")
-//     .its("0.contentDocument.body")
-//     .should("not.be.empty")
-//     .then(cy.wrap)
-//     .find(selector);
-// });
-
-// Cypress.Commands.add("getByTestId", (testId) => {
-//   return cy.get(`[data-testid=${testId}]`);
-// });
+Cypress.Commands.add("fillUserForm", (valid = true) => {
+  valid ? cy.get("#fName").type("Test") : cy.get("#fName").clear();
+  valid ? cy.get("#lName").type("Testowy") : cy.get("#lName").clear();
+  cy.get("#phoneNumber")
+    .clear()
+    .type(valid ? "123123123" : "123a23123");
+  valid
+    ? cy.get("#addressL1").type("Mój adres 12/34")
+    : cy.get("#addressL1").clear();
+  valid ? cy.get("#city").type("Wrocław") : cy.get("#city").clear();
+  cy.get("#zipCode")
+    .clear()
+    .type(valid ? "01-234" : "01abcd2");
+  cy.get("#notes").type("To są testowe notatki");
+});

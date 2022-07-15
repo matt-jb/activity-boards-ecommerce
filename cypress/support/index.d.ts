@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-// declare namespace Cypress {
-//   interface Chainable<Subject> {
-//     getStripeElement(fieldName: string): Chainable<any>;
-//     getByTestId(testid: string): Chainable<any>;
-//   }
-// }
+declare namespace Cypress {
+  interface Chainable<Subject> {
+    getIframeBody(): Chainable<any>;
+    fillUserForm(valid: boolean): Chainable<any>;
+  }
+}
