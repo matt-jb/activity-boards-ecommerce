@@ -14,6 +14,7 @@ export default function DarkBackground({ children, onClick }: Props) {
       initial="hidden"
       animate="visible"
       exit="exit"
+      data-testid="side-bar-bg"
     >
       {children}
     </Background>

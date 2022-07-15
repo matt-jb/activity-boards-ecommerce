@@ -5,5 +5,5 @@ interface Props {
 }
 
 export default function PageTitle({ title }: Props) {
-  return <StyledTitle>{title}</StyledTitle>;
+  return <StyledTitle data-testid="page-title">{title}</StyledTitle>;
 }

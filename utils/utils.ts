@@ -45,12 +45,12 @@ export const validate = {
   address: Yup.string().required("Adres jest wymagany."),
   zipCode: Yup.string()
     .required("Kod pocztowy jest wymagany.")
-    .matches(/^[0-9]{2}-[0-9]{3}/, "Podaj kod pocztowy w formacie XX-XXX")
-    .length(6, "Kod pocztowy jest zbyt długi."),
+    .length(6, "Kod pocztowy jest zbyt długi.")
+    .matches(/^[0-9]{2}-[0-9]{3}/, "Podaj kod pocztowy w formacie XX-XXX."),
   city: Yup.string().required("Musisz podać miasto."),
   notes: Yup.string(),
   phoneNumber: Yup.string()
-    .required("Musisz podać numer telefonu")
+    .required("Musisz podać numer telefonu.")
     .matches(
       /^\d{3}\d{3}\d{3}/g,
       "Podaj numer telefonu jako ciąg 9 cyfr, bez spacji i myślników."

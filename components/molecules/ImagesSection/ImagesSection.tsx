@@ -24,7 +24,10 @@ export default function ImagesSection({
 }: Props) {
   return (
     <StyledImagesSection>
-      <MainImageContainer onClick={() => handleGalleryMode(true)}>
+      <MainImageContainer
+        onClick={() => handleGalleryMode(true)}
+        data-testid="main-product-image"
+      >
         <Image
           src={images[currImg]}
           alt={name}

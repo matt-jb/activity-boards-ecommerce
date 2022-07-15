@@ -36,9 +36,12 @@ export default function GalleryComponent({
   }
 
   return (
-    <Gallery onClick={() => onClick()}>
+    <Gallery onClick={() => onClick()} data-testid="gallery-component">
       <FaArrowAltCircleLeft onClick={(e) => prevImg(e)} className="prev" />
-      <FullScreenImageContainer {...handlers}>
+      <FullScreenImageContainer
+        {...handlers}
+        data-testid="main-gallery-mode-image"
+      >
         <Image
           src={images[currImg]}
           alt={name}

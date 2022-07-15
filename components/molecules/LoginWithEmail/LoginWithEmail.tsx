@@ -51,7 +51,11 @@ export default function LoginWithEmail() {
           label="Hasło"
           formik={formik}
         />
-        <Button type="submit" disabled={formik.isSubmitting}>
+        <Button
+          type="submit"
+          disabled={formik.isSubmitting}
+          data-testid="login-submit-btn"
+        >
           Zaloguj się
         </Button>
       </StyledForm>

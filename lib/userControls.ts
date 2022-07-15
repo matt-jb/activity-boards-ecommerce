@@ -1,16 +1,13 @@
 import {
-  arrayRemove,
-  arrayUnion,
   collection,
   doc,
   getDoc,
   getDocs,
   query,
   setDoc,
-  updateDoc,
   where,
 } from "firebase/firestore";
-import { IOrder, IProduct, IUserFormData } from "../utils/types";
+import { IOrder, IUserFormData } from "../utils/types";
 import { db } from "./clientAuth";
 
 export const defaultUserData = {

@@ -14,7 +14,11 @@ export default function SideBar({ onClick, children, title }: Props) {
     <DarkBackground onClick={onClick}>
       <SideBox variants={sideVariants} onClick={(e) => e.stopPropagation()}>
         <IconContainer>
-          <BiX onClick={onClick} className="close" />
+          <BiX
+            onClick={onClick}
+            className="close"
+            data-testid="side-bar-close"
+          />
         </IconContainer>
         <Title>{title}</Title>
         {children}

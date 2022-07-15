@@ -76,7 +76,10 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={(e) => handleSubmit(e)}>
-      <PaymentElement onReady={() => setPaymentElementVisible(true)} />
+      <PaymentElement
+        onReady={() => setPaymentElementVisible(true)}
+        id="paymentElement"
+      />
       {paymentElementVisible ? (
         <RegularButton
           text={isLoading ? "Procesujemy płatność..." : "Zapłać teraz"}
