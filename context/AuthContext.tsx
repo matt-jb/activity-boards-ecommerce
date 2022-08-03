@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../lib/clientAuth";
-import { IProduct, IUserFormData, UserType } from "../utils/types";
+import { IUserFormData, UserType } from "../utils/types";
 import { Spinner } from "../components/atoms";
 import { getUserDetails, modifyWishList } from "../lib/userControls";
 

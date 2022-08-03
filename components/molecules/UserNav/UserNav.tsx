@@ -31,14 +31,17 @@ export default function UserNav() {
         )}
         {visibleTab === "searchBar" && <Search handleVisible={handleVisible} />}
       </AnimatePresence>
-      <StyledUserSection>
-        <IconContainer onClick={() => handleVisible("searchBar")}>
+      <StyledUserSection data-testid="user-nav">
+        <IconContainer
+          onClick={() => handleVisible("searchBar")}
+          data-testid="search-icon"
+        >
           <BiSearchAlt2 className="icon" />
           <IconName>Szukaj</IconName>
         </IconContainer>
         <IconContainer onClick={() => handleVisible("wishList")}>
           <BiHeart className="icon" />
-          <IconName>Lista życzeń</IconName>
+          <IconName data-testid="wish-list-toggler">Lista życzeń</IconName>
         </IconContainer>
         <Link href={user ? `/account` : `/login`} passHref>
           <IconContainer>
@@ -48,7 +51,11 @@ export default function UserNav() {
         </Link>
         <Link href="/cart" passHref>
           <IconContainer>
-            {state.length > 0 && <Counter>{getItemsNumber(state)}</Counter>}
+            {state.length > 0 && (
+              <Counter data-testid="cart-counter">
+                {getItemsNumber(state)}
+              </Counter>
+            )}
             <BiCart className="icon" />
             <IconName>Koszyk</IconName>
           </IconContainer>

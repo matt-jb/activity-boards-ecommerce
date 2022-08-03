@@ -23,7 +23,7 @@ export default function Pagination({ controls }: Props) {
   } = controls;
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="pagination">
       <Button
         onClick={() => goToFirstPage()}
         disabled={i === 0}

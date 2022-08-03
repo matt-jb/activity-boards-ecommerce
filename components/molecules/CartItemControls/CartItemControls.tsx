@@ -24,7 +24,7 @@ export default function CartItemControls({ product }: Props) {
   const thumbnail = images[0];
 
   return (
-    <ItemControls>
+    <ItemControls data-testid="order-controls">
       <ThumbnailContainer>
         <Image src={thumbnail} alt={name} layout="fill" objectFit="contain" />
       </ThumbnailContainer>
@@ -36,10 +36,19 @@ export default function CartItemControls({ product }: Props) {
         <BiMinusCircle
           className="control"
           onClick={() => decreaseProductAmount(item)}
+          data-testid="minus-btn"
         />
-        <Qty>{qty}</Qty>
-        <BiPlusCircle className="control" onClick={() => addProduct(item)} />
-        <BiXCircle className="control x" onClick={() => removeProduct(item)} />
+        <Qty data-testid="order-qty">{qty}</Qty>
+        <BiPlusCircle
+          className="control"
+          onClick={() => addProduct(item)}
+          data-testid="plus-btn"
+        />
+        <BiXCircle
+          className="control x"
+          onClick={() => removeProduct(item)}
+          data-testid="x-btn"
+        />
       </ControlsContainer>
       <Total>
         Razem: <Price>{getTotalForItem(product)},00 zł</Price>
