@@ -4,12 +4,20 @@ export const NameTag = styled.div`
   margin: 1.3rem 0;
 `;
 
-export const Name = styled.h2`
+export const Name = styled.a`
   font-size: 1.7rem;
   font-family: "Dosis", serif;
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  color: var(--black);
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    border-bottom: 1px solid var(--black);
+  }
 
   @media only screen and (max-width: 500px) {
     text-align: center;

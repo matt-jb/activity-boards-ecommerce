@@ -7,4 +7,5 @@ export const StyledTitle = styled.h1`
   color: var(--pink);
   text-transform: uppercase;
   text-align: center;
+  word-break: break-word;
 `;

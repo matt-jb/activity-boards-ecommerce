@@ -50,7 +50,9 @@ export default function ProductCard({ product }: Props) {
         />
       </ImageContainer>
       <NameTag>
-        <Name>{name}</Name>
+        <Link href={`/${id}/${slug}`} passHref>
+          <Name>{name}</Name>
+        </Link>
       </NameTag>
       <Description>
         {getShortDescription(description)}

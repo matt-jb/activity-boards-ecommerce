@@ -1,6 +1,4 @@
 import Alert from "./Alert/Alert";
-import DeleteButton from "./DeleteButton/DeleteButton";
-import EditButton from "./EditButton/EditButton";
 import FooterLink from "./FooterLink/FooterLink";
 import FormInput from "./FormInput/FormInput";
 import RegularButton from "./RegularButton/RegularButton";
@@ -15,11 +13,12 @@ import NoItemsInCart from "./NoItemsInCart/NoItemsInCart";
 import CheckoutForm from "./CheckoutForm/CheckoutForm";
 import Category from "./Category/Category";
 import DarkBackground from "./DarkBackground/DarkBackground";
+import OneCol from "./OneCol/OneCol";
+import TwoCol from "./TwoCol/TwoCol";
+import ThreeCol from "./ThreeCol/ThreeCol";
 
 export {
   Alert,
-  DeleteButton,
-  EditButton,
   FooterLink,
   FormInput,
   RegularButton,
@@ -34,4 +33,7 @@ export {
   CheckoutForm,
   Category,
   DarkBackground,
+  OneCol,
+  TwoCol,
+  ThreeCol,
 };
