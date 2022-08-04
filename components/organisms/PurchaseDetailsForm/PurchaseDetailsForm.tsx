@@ -32,6 +32,7 @@ export default function PurchaseDetailsForm() {
     zipCode: user?.zipCode || "",
     city: user?.city || "",
     notes: "",
+    wishList: [],
   };
 
   const formik = useFormik({
