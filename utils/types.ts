@@ -20,8 +20,8 @@ export interface IUserFormData {
   addressL2: string;
   zipCode: string;
   city: string;
-  wishList: Array<string>;
   notes?: string;
+  wishList: Array<string>;
 }
 
 export interface IUser extends IUserFormData {

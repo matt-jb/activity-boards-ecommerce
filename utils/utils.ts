@@ -56,6 +56,7 @@ export const validate = {
       "Podaj numer telefonu jako ciąg 9 cyfr, bez spacji i myślników."
     )
     .length(9, "Numer telefonu jest zbyt długi."),
+  wishList: Yup.array(),
 };
 
 export const sizes = {

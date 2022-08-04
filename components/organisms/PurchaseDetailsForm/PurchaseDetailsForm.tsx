@@ -15,8 +15,9 @@ import {
 import { useCart } from "../../../context/CartContext";
 import { createOrder } from "../../../lib/payments";
 import { saveUserDetails } from "../../../lib/userControls";
+import { IUserFormData } from "../../../utils/types";
 
-const { name, phoneNumber, address, zipCode, city, notes } = validate;
+const { name, phoneNumber, address, zipCode, city, notes, wishList } = validate;
 
 export default function PurchaseDetailsForm() {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function PurchaseDetailsForm() {
     zipCode: user?.zipCode || "",
     city: user?.city || "",
     notes: "",
-    wishList: [],
+    wishList: user?.wishList || [],
   };
 
   const formik = useFormik({
@@ -45,9 +46,10 @@ export default function PurchaseDetailsForm() {
       zipCode,
       city,
       notes,
+      wishList,
     }),
     onSubmit: async (values, { setSubmitting }) => {
-      await createOrder(state, values, user)
+      await createOrder(state, values as IUserFormData, user)
         .then(async (docRef) => {
           router.push(`/cart/payment/${docRef.id}`);
         })
@@ -55,9 +57,9 @@ export default function PurchaseDetailsForm() {
           addAlert("warning", `Wystąpił błąd: ${err}`);
         });
 
-      await saveUserDetails(user!.uid, values)
+      await saveUserDetails(user!.uid, values as IUserFormData)
         .then(() => {
-          updateUserCtx(values);
+          updateUserCtx(values as IUserFormData);
         })
         .catch((err) => {
           console.log(err);
