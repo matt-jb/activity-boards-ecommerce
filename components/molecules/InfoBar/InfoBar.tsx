@@ -9,7 +9,7 @@ export default function InfoBar() {
           Wysyłka i zwrot
         </Link>
         <div>Ręcznie wykonane tablice manipulacyjne</div>
-        <Link href="/personalisation" className="infoText">
+        <Link href="/personalization" className="infoText">
           Personalizacja
         </Link>
       </StyledBar>

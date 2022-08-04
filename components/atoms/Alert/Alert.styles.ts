@@ -37,9 +37,7 @@ export const StyledAlert = styled(motion.div)<{ type: AlertTypes }>`
   cursor: default;
 
   @media only screen and (max-width: 550px) {
-    width: 90vw;
-    margin-right: 0;
-    margin-left: 0;
+    width: 95vw;
   }
 `;
 

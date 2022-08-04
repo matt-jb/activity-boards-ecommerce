@@ -22,6 +22,7 @@ export const AlertsContainer = styled.section`
   z-index: 1;
 
   @media only screen and (max-width: 550px) {
-    right: 0vw;
+    right: 50;
+    bottom: 4vh;
   }
 `;

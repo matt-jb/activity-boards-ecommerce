@@ -37,7 +37,7 @@ export default function GalleryComponent({
 
   return (
     <Gallery onClick={() => onClick()} data-testid="gallery-component">
-      <FaArrowAltCircleLeft onClick={(e) => prevImg(e)} className="prev" />
+      <FaArrowAltCircleLeft onClick={(e) => prevImg(e)} className="icon prev" />
       <FullScreenImageContainer
         {...handlers}
         data-testid="main-gallery-mode-image"
@@ -49,7 +49,10 @@ export default function GalleryComponent({
           objectFit="contain"
         />
       </FullScreenImageContainer>
-      <FaArrowAltCircleRight onClick={(e) => nextImg(e)} className="next" />
+      <FaArrowAltCircleRight
+        onClick={(e) => nextImg(e)}
+        className="icon next"
+      />
     </Gallery>
   );
 }

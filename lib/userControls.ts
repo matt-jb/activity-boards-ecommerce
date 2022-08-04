@@ -58,15 +58,19 @@ export async function getUserOrders(uid: string) {
 export async function saveUserDetails(uid: string, data: IUserFormData) {
   const { fName, lName, phoneNumber, addressL1, addressL2, zipCode, city } =
     data;
-  const docRef = await setDoc(doc(db, "users", uid), {
-    fName,
-    lName,
-    phoneNumber,
-    addressL1,
-    addressL2,
-    zipCode,
-    city,
-  });
+  const docRef = await setDoc(
+    doc(db, "users", uid),
+    {
+      fName,
+      lName,
+      phoneNumber,
+      addressL1,
+      addressL2,
+      zipCode,
+      city,
+    },
+    { merge: true }
+  );
 
   return docRef;
 }

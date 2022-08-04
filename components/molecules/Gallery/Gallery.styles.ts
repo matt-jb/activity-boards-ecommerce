@@ -3,26 +3,27 @@ import styled from "styled-components";
 export const Gallery = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   top: 0;
   left: 0;
   z-index: 5;
   width: 100vw;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  height: 100vh;
+  background-color: var(--white);
 
-  & .prev,
-  .next {
+  & .icon {
     width: 8rem;
     height: 8rem;
     z-index: 10;
-    color: var(--black);
+    color: var(--darkGrey);
     user-select: none;
     cursor: pointer;
+    z-index: 11;
 
     @media only screen and (max-width: 600px) {
-      display: none;
+      width: 6rem;
+      height: 6rem;
     }
   }
 
@@ -38,17 +39,7 @@ export const Gallery = styled.div`
 `;
 
 export const FullScreenImageContainer = styled.div`
-  position: relative;
-  width: 80vw;
-  height: 90vh;
-  margin: auto;
-  z-index: 10;
-
-  @media only screen and (max-width: 600px) {
-    width: 100vw;
-    height: 105rem;
-    align-self: flex-start;
-    margin-top: 0;
-    overflow: hidden;
-  }
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
 `;

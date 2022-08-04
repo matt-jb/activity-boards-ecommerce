@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IProduct } from "../../../utils/types";
 import {
   GalleryComponent,
@@ -22,7 +22,12 @@ export default function ProductDetails({ product }: Props) {
 
   function handleGalleryMode(val: boolean) {
     setGalleryMode(val);
+    window.scrollTo({ top: 0 });
   }
+
+  useEffect(() => {
+    document.body.style.overflow = galleryMode ? "hidden" : "unset";
+  }, [galleryMode]);
 
   return (
     <>
