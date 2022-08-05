@@ -32,3 +32,5 @@ describe("User form", () => {
     ).should("exist");
   });
 });
+
+export {};

@@ -29,3 +29,5 @@ describe("Product details page", () => {
     cy.url().should("include", "/login");
   });
 });
+
+export {};

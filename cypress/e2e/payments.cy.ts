@@ -21,3 +21,5 @@ describe("Payments", () => {
     cy.contains("Zapłać teraz").click();
   });
 });
+
+export {};

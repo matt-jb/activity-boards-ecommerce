@@ -30,3 +30,5 @@ describe("Cart functionalities", () => {
     cy.contains("Twój koszyk jest pusty.");
   });
 });
+
+export {};

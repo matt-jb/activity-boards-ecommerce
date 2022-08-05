@@ -54,3 +54,5 @@ describe("Wish List", () => {
     cy.get("[data-testid=side-bar-bg]").should("not.exist");
   });
 });
+
+export {};

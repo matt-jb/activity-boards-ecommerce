@@ -4,7 +4,7 @@ import {
   StyledLorem,
   TextContainer,
 } from "./ThreeCol.styles";
-import placeholder from "../../../public/img/600x400.jpg";
+import placeholder from "../../../public/img/placeholder-600x400.png";
 import Image from "next/image";
 
 interface Props {

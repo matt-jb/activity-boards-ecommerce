@@ -17,3 +17,5 @@ describe("Search", () => {
     cy.get("[data-testid=side-bar-bg]").should("not.exist");
   });
 });
+
+export {};

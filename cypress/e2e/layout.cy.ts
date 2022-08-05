@@ -34,3 +34,5 @@ describe("Layout on all pages", () => {
     cy.contains("2");
   });
 });
+
+export {};

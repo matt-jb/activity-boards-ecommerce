@@ -8,7 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useAlert } from "../../../context/AlertContext";
 import { saveUserDetails } from "../../../lib/userControls";
 
-const { name, phoneNumber, address, zipCode, city } = validate;
+const { name, phoneNumber, address, zipCode, city, wishList } = validate;
 
 export default function UserDetailsForm() {
   const { addAlert } = useAlert();
@@ -21,6 +21,7 @@ export default function UserDetailsForm() {
     addressL2: user?.addressL2 || "",
     zipCode: user?.zipCode || "",
     city: user?.city || "",
+    wishList: user?.wishList || [],
   };
 
   const formik = useFormik({
