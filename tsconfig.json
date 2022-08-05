@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["cypress", "cypress-plugin-stripe-elements"]
+    "types": ["cypress"]
   },
   "include": [
     "next-env.d.ts",
