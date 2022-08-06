@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useProducts } from "../../../context/ProductsContext";
 import { IProduct, UserNavFeatures } from "../../../utils/types";
-import { filterSearchResults } from "../../../utils/utils";
+import { filterSearchResults, getSearchInfo } from "../../../utils/utils";
 import { DropdownProduct } from "../../molecules";
 import SideBar from "../SideBar/SideBar";
-import { SearchBox, SearchContainer } from "./Search.styles";
+import { SearchBox, SearchContainer, UserInfo } from "./Search.styles";
 
 interface Props {
   handleVisible: (type: UserNavFeatures) => void;
@@ -12,6 +12,7 @@ interface Props {
 
 export default function Search({ handleVisible }: Props) {
   const [value, setValue] = useState("");
+  const [userInfo, setUserInfo] = useState("");
   const [searchResults, setSearchResults] = useState<IProduct[]>([]);
   const { products } = useProducts();
 
@@ -27,11 +28,13 @@ export default function Search({ handleVisible }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
+  useEffect(() => {
+    const userMsg = getSearchInfo(searchResults, value);
+    setUserInfo(userMsg);
+  }, [value, searchResults]);
+
   return (
-    <SideBar
-      onClick={() => handleVisible("searchBar")}
-      title="Wyszukaj produkt"
-    >
+    <SideBar onClick={() => handleVisible("searchBar")} title="Szukaj">
       <SearchContainer>
         <SearchBox
           type="text"
@@ -42,6 +45,7 @@ export default function Search({ handleVisible }: Props) {
           }}
           data-testid="search-input"
         />
+        <UserInfo>{userInfo}</UserInfo>
         {searchResults.length > 0 &&
           searchResults.map((product) => (
             <DropdownProduct

@@ -45,7 +45,7 @@ export const validate = {
   address: Yup.string().required("Adres jest wymagany."),
   zipCode: Yup.string()
     .required("Kod pocztowy jest wymagany.")
-    .length(6, "Kod pocztowy jest zbyt długi.")
+    .length(6, "Kod pocztowy ma nieprawidłową długość.")
     .matches(/^[0-9]{2}-[0-9]{3}/, "Podaj kod pocztowy w formacie XX-XXX."),
   city: Yup.string().required("Musisz podać miasto."),
   notes: Yup.string(),
@@ -73,4 +73,21 @@ export function filterSearchResults(
   return products.filter(
     (item) => item.name.toLowerCase().indexOf(value.toLocaleLowerCase()) > -1
   );
+}
+
+export function getSearchInfo(searchResults: IProduct[], value: string) {
+  switch (true) {
+    case searchResults.length === 0 && value.length === 0:
+      return `Rozpocznij wyszukiwanie!`;
+    case searchResults.length === 0 && value.length > 2:
+      return `Nie znaleziono żadnych produktów.`;
+    case searchResults.length === 0 && value.length <= 2:
+      return `Wpisz przynajmniej 3 znaki.`;
+    case searchResults.length === 1:
+      return `Znaleziono 1 produkt:`;
+    case searchResults.length > 1 && searchResults.length < 5:
+      return `Znaleziono ${searchResults.length} produkty:`;
+    default:
+      return `Znaleziono ${searchResults.length} produktów:`;
+  }
 }

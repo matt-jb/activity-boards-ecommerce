@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
   height: 4rem;
   background-color: var(--pink);
   margin-top: 2rem;
+  margin-bottom: 2rem;
   font-size: 1.6rem;
   font-family: "Poppins", serif;
   font-weight: 600;

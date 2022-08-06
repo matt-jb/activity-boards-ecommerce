@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     --lightGrey: #ddd;
     --lightGrey2: #eee;
     --darkGrey: #444;
+    --darkGrey2: #999;
     --lightBlue: #608ac8cc;
     --lightBlue2: #83aae4cc;
     --darkBlue: #213a5f;

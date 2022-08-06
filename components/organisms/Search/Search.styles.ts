@@ -41,3 +41,9 @@ export const SearchBox = styled.input`
     padding: 1rem 1rem;
   }
 `;
+
+export const UserInfo = styled.p`
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--darkGrey2);
+`;

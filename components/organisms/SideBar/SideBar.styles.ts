@@ -22,14 +22,16 @@ export const SideBox = styled(motion.div)`
   }
 `;
 
-export const IconContainer = styled.div`
-  display: block;
+export const TopRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   width: 100%;
-  height: 9rem;
-  padding-right: 4rem;
-  padding-top: 2rem;
-  text-align: right;
+  height: 12rem;
+  padding: 3rem 0.5rem 2rem;
+`;
 
+export const IconContainer = styled.div`
   & .close {
     width: 5rem;
     height: 5rem;
@@ -44,18 +46,21 @@ export const IconContainer = styled.div`
 `;
 
 export const Title = styled.p`
-  display: block;
-  width: 100%;
-  margin-bottom: 2.5rem;
-  text-align: center;
+  padding-left: 2rem;
+  text-align: left;
   font-size: 5rem;
   font-family: "Dosis", serif;
   text-transform: uppercase;
   font-weight: 600;
+  line-height: 130%;
   color: var(--pink);
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 650px) {
     font-size: 4rem;
+  }
+
+  @media only screen and (max-width: 450px) {
+    font-size: 3rem;
   }
 `;
 
